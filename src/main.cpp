@@ -1,18 +1,19 @@
 #include <Arduino.h>
+#include <FastLED.h>
 
 // put function declarations here:
-int myFunction(int, int);
+
+CRGB leds[40];
 
 void setup() {
   // put your setup code here, to run once:
-  int result = myFunction(2, 3);
+  FastLED.addLeds<WS2812B, 5>(leds, 40);
+  for (int i = 0; i < 40; i++) {
+      leds[i] = CRGB::Aquamarine;
+  }
+  FastLED.show();
 }
 
 void loop() {
   // put your main code here, to run repeatedly:
-}
-
-// put function definitions here:
-int myFunction(int x, int y) {
-  return x + y;
 }
