@@ -2,12 +2,14 @@
 #define MAIN_H
 
 #include <Arduino.h>
-#include <FastLED.h>
 
 #include "input.h"
 #include "leds.h"
 
-#define LOOP_INTERVAL 1
+#define INTERVAL_LOOP 1
+#define INTERVAL_INPUT 1
+#define INTERVAL_LEDS 1000
+
 
 void setupLEDs();
 void loopLEDs();

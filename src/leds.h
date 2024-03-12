@@ -6,7 +6,7 @@
 
 
 void setupLEDs();
-void loopLEDs();
+void loopLEDs(void *);
 
 CHSV getColorHSV();
 CRGB getColorRGB();

@@ -2,17 +2,32 @@
 
 // put function declarations here:
 
+int timerInput = 0;
+int timerLEDs = 0;
 
-void setup() {
-  // put your setup code here, to run once:
-  setupInput();
-  setupLEDs();
+void setup()
+{
+    // put your setup code here, to run once:
+    setupInput();
+    setupLEDs();
 }
 
-void loop() {
-  // put your main code here, to run repeatedly:
-  loopInput();
-  loopLEDs();
+void loop()
+{
+    // increment timers 
+    timerInput++;
+    timerLEDs++;
 
-  delay(LOOP_INTERVAL);
+    // check timeout 
+    if (timerInput >= INTERVAL_INPUT) {
+        timerInput = 0;
+        loopInput();
+    }
+    if (timerLEDs >= INTERVAL_LEDS) {
+        timerLEDs = 0;
+        loopLEDs();
+    }
+
+    // loop delay
+    delay(INTERVAL_LOOP);
 }
