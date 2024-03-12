@@ -5,8 +5,8 @@
 
 void setup() {
   // put your setup code here, to run once:
-  setupLEDs();
   setupInput();
+  setupLEDs();
 }
 
 void loop() {

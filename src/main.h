@@ -7,12 +7,9 @@
 #include "input.h"
 #include "leds.h"
 
-#define LOOP_INTERVAL 30
-
+#define LOOP_INTERVAL 1
 
 void setupLEDs();
 void loopLEDs();
-
-CRGB getColor();
 
 #endif

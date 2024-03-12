@@ -15,15 +15,12 @@ void loopLEDs()
 {
     for (int i = 0; i < 40; i++)
     {
-        leds[i] = getColorRGB();
+        leds[i] = CRGB(getColorHSV());
     }
 
     FastLED.show();
 }
 
-CRGB getColorRGB() {
-    return CRGB(getColorHSV());
-}
 CHSV getColorHSV()
 {
     if (isPressedSat())
@@ -36,7 +33,10 @@ CHSV getColorHSV()
     }
     else if (isPressedVal())
     {
-        return CHSV(160, 255, 255);
+        return CHSV(0, 255, 255);
     }
-    return CHSV(0, 255, 255);
+    return CHSV(160, 255, 255);
+}
+CRGB getColorRGB() {
+    return CRGB(getColorHSV());
 }
