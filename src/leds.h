@@ -8,6 +8,7 @@
 void setupLEDs();
 void loopLEDs();
 
-CRGB getColor();
+CHSV getColorHSV();
+CRGB getColorRGB();
 
 #endif

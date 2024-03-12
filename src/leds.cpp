@@ -3,6 +3,8 @@
 
 CRGB leds[40];
 
+byte hsv = 0;
+
 void setupLEDs()
 {
     FastLED.setBrightness(100);
@@ -11,27 +13,30 @@ void setupLEDs()
 
 void loopLEDs()
 {
-
     for (int i = 0; i < 40; i++)
     {
-        leds[i] = getColor();
+        leds[i] = getColorRGB();
     }
+
     FastLED.show();
 }
 
-CRGB getColor()
+CRGB getColorRGB() {
+    return CRGB(getColorHSV());
+}
+CHSV getColorHSV()
 {
     if (isPressedSat())
     {
         if (isPressedVal())
         {
-            return CRGB::White;
+            return CHSV(0, 0, 255);
         }
-        return CRGB::Green;
+        return CHSV(96, 255, 255);
     }
     else if (isPressedVal())
     {
-        return CRGB::Blue;
+        return CHSV(160, 255, 255);
     }
-    return CRGB::Red;
+    return CHSV(0, 255, 255);
 }
