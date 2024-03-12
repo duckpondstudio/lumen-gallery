@@ -1,11 +1,8 @@
 {
 	"folders": [
 		{
+            "name": "Lumen Gallery",
 			"path": "."
-		},
-		{
-			"name": "Lumen Gallery",
-			"path": "Lumen Gallery"
 		}
 	],
     "settings": {}
