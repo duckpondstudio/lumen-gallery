@@ -1,7 +1,4 @@
-#include <Arduino.h>
-
-#include "input.h"
-#include "leds.h"
+#include "main.h"
 
 // put function declarations here:
 
@@ -14,6 +11,8 @@ void setup() {
 
 void loop() {
   // put your main code here, to run repeatedly:
-  loopLEDs();
   loopInput();
+  loopLEDs();
+
+  delay(LOOP_INTERVAL);
 }
