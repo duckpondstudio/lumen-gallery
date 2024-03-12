@@ -1,8 +1,8 @@
 #include "input.h"
 
 
-EasyButton btnSat(BTN_PIN_SAT);
-EasyButton btnVal(BTN_PIN_VAL);
+EasyButton btnSat(BTN_PIN_SAT, BTNS_DEBOUNCE, BTNS_PULLUP, BTNS_INVERT);
+EasyButton btnVal(BTN_PIN_VAL, BTNS_DEBOUNCE, BTNS_PULLUP, BTNS_INVERT);
 
 void setupInput() {
     btnSat.begin();
