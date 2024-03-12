@@ -1,7 +1,6 @@
 #include "leds.h"
 
 void setupLEDs() {
-
   FastLED.addLeds<WS2812B, 5, GRB>(leds, 40);
 }
 
