@@ -2,9 +2,10 @@
 #define INPUT_H
 
 #include <Arduino.h>
-#include <SimpleEncoder.h>
+// #include <SimpleEncoder.h>
 // #include <EncoderButton.h>
 // #include <Encoder.h>
+#include <RotaryEncoder.h>
 
 #include "pindef.h"
 
@@ -22,6 +23,6 @@ bool isPressedVal();
 bool isPressedEnc();
 
 byte encoderValueAsByte();
-long encoderValue();
+int encoderValue();
 
 #endif
