@@ -1,5 +1,5 @@
 #include "leds.h"
-#include "input.h"
+// #include "input.h"
 
 CRGB leds[40];
 
@@ -17,15 +17,15 @@ void loopLEDs()
 {
 
     CRGB color = CRGB::Green;
-    if (isPressedSat() || isPressedVal())
-    {
-        test = 1;
-    }
-    if (test > 0)
-    {
-        test--;
-        color = CRGB::Blue;
-    }
+    // if (isPressedEnc())
+    // {
+    //     test = 1;
+    // }
+    // if (test > 0)
+    // {
+    //     test--;
+    //     color = CRGB::Blue;
+    // }
 
         for (int i = 0; i < 40; i++)
         {
@@ -39,18 +39,18 @@ void loopLEDs()
 
 CHSV getColorHSV()
 {
-    if (isPressedSat())
-    {
-        if (isPressedVal())
-        {
-            return CHSV(0, 0, 255);
-        }
-        return CHSV(96, 255, 255);
-    }
-    else if (isPressedVal())
-    {
-        return CHSV(0, 255, 255);
-    }
+    // if (isPressedSat())
+    // {
+    //     if (isPressedVal())
+    //     {
+    //         return CHSV(0, 0, 255);
+    //     }
+    //     return CHSV(96, 255, 255);
+    // }
+    // else if (isPressedVal())
+    // {
+    //     return CHSV(0, 255, 255);
+    // }
     return CHSV(160, 255, 255);
 }
 CRGB getColorRGB()

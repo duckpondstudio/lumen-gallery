@@ -2,14 +2,14 @@
 
 void setup()
 {
-    setupInput();
+    // setupInput();
     setupLEDs();
 }
 
 void loop()
 {
 
-    loopInput();
+    // loopInput();
     loopLEDs();
 
     // loop delay
