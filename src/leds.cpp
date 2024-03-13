@@ -30,8 +30,8 @@ void loopLEDs()
         for (int i = 0; i < 40; i++)
         {
             // leds[i] = CRGB::Blue;
-            leds[i] = color;
-            // leds[i] = CRGB(getColorHSV());
+            // leds[i] = color;
+            leds[i] = CRGB(getColorHSV());
         }
 
         FastLED.show();
@@ -51,7 +51,7 @@ CHSV getColorHSV()
     // {
     //     return CHSV(0, 255, 255);
     // }
-    return CHSV(160, 255, 255);
+    return CHSV(encoderValueAsByte(), 255, 255);
 }
 CRGB getColorRGB()
 {

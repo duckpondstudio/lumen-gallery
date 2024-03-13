@@ -1,8 +1,10 @@
 #ifndef INPUT_H
 #define INPUT_H
 
+#include <Arduino.h>
+#include <SimpleEncoder.h>
 // #include <EncoderButton.h>
-#include <Encoder.h>
+// #include <Encoder.h>
 
 #define PIN_BTN_SAT 7
 #define PIN_BTN_VAL 6
