@@ -4,17 +4,14 @@
 CRGB leds[40];
 
 byte hsv = 0;
-unsigned long previousInputMillisA = 0;
 
 void setupLEDs()
 {
     FastLED.setBrightness(100);
     FastLED.addLeds<WS2812, 5, GRB>(leds, 40);
-    previousInputMillisA = millis();
 }
 
 byte test = 0;
-byte time = 0;
 
 void loopLEDs()
 {

@@ -6,10 +6,6 @@
 #include "input.h"
 #include "leds.h"
 
-#define INTERVAL_LOOP 1
-#define INTERVAL_INPUT 1
-#define INTERVAL_LEDS 1000
-
 
 void setupLEDs();
 void loopLEDs();
