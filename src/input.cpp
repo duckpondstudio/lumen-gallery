@@ -30,7 +30,7 @@ void loopInput()
     // btnVal.update();
 
     if (encoder.CLOCKWISE) {
-        // encoderPosition++;
+        encoderPosition++;
     }
     if (encoder.COUNTERCLOCKWISE) {
         encoderPosition--;
