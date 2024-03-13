@@ -12,8 +12,9 @@
 // Encoder encoder(PIN_ENC_A, PIN_ENC_B);
 // long encoderPosition = -999;
 
+long encoderPositionOutput = 0;
 long encoderPosition = 0;
-SimpleEncoder encoder(PIN_BTN_ENC, PIN_ENC_A, PIN_ENC_B, encoderPosition, -512, 512);
+SimpleEncoder encoder(PIN_BTN_ENC, PIN_ENC_A, PIN_ENC_B, encoderPositionOutput, -512, 512);
 
 
 void setupInput()
@@ -28,12 +29,12 @@ void loopInput()
     // btnSat.update();
     // btnVal.update();
 
-    // if (encoder.CLOCKWISE) {
-    //     encoderPosition++;
-    // }
-    // if (encoder.COUNTERCLOCKWISE) {
-    //     encoderPosition--;
-    // }
+    if (encoder.CLOCKWISE) {
+        // encoderPosition++;
+    }
+    if (encoder.COUNTERCLOCKWISE) {
+        encoderPosition--;
+    }
 }
 
 // bool isPressedSat() { return btnSat.buttonState(); }
@@ -45,4 +46,5 @@ bool isPressedEnc() { return false; }
 
 byte encoderValueAsByte() { return encoderValue() % 256; }
 // long encoderValue() { return encoder.getValue(); }
+// long encoderValue() { return encoderPositionOutput; }
 long encoderValue() { return encoderPosition; }
