@@ -8,7 +8,7 @@ byte hsv = 0;
 void setupLEDs()
 {
     FastLED.setBrightness(100);
-    FastLED.addLeds<WS2812, 5, GRB>(leds, 40);
+    FastLED.addLeds<WS2812, PIN_LEDS, GRB>(leds, 40);
 }
 
 byte test = 0;
