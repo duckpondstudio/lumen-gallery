@@ -1,7 +1,7 @@
 #ifndef INPUT_H
 #define INPUT_H
 
-#include <EncoderButton.h>
+// #include <EncoderButton.h>
 
 #define PIN_BTN_SAT 7
 #define PIN_BTN_VAL 6
