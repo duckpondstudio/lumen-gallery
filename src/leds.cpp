@@ -1,5 +1,5 @@
 #include "leds.h"
-// #include "input.h"
+#include "input.h"
 
 CRGB leds[40];
 

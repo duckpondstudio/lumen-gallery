@@ -35,3 +35,6 @@ void loopInput() {
 bool isPressedSat() { return false; }
 bool isPressedVal() { return false; }
 bool isPressedEnc() { return false; }
+
+byte encoderValueAsByte() { return encoderValue() % 256; }
+long encoderValue() { return encoderPosition; }

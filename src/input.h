@@ -24,4 +24,7 @@ bool isPressedSat();
 bool isPressedVal();
 bool isPressedEnc();
 
+byte encoderValueAsByte();
+long encoderValue();
+
 #endif
