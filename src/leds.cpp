@@ -4,21 +4,40 @@
 CRGB leds[40];
 
 byte hsv = 0;
+unsigned long previousInputMillisA = 0;
 
 void setupLEDs()
 {
     FastLED.setBrightness(100);
-    FastLED.addLeds<WS2812B, 5, GRB>(leds, 40);
+    FastLED.addLeds<WS2812, 5, GRB>(leds, 40);
+    previousInputMillisA = millis();
 }
+
+byte test = 0;
+byte time = 0;
 
 void loopLEDs()
 {
-    for (int i = 0; i < 40; i++)
+
+    CRGB color = CRGB::Green;
+    if (isPressedSat() || isPressedVal())
     {
-        leds[i] = CRGB(getColorHSV());
+        test = 1;
+    }
+    if (test > 0)
+    {
+        test--;
+        color = CRGB::Blue;
     }
 
-    FastLED.show();
+        for (int i = 0; i < 40; i++)
+        {
+            // leds[i] = CRGB::Blue;
+            leds[i] = color;
+            // leds[i] = CRGB(getColorHSV());
+        }
+
+        FastLED.show();
 }
 
 CHSV getColorHSV()
@@ -37,6 +56,7 @@ CHSV getColorHSV()
     }
     return CHSV(160, 255, 255);
 }
-CRGB getColorRGB() {
+CRGB getColorRGB()
+{
     return CRGB(getColorHSV());
 }

@@ -9,10 +9,8 @@ void setupInput() {
     btnVal.begin();
 }
 void loopInput() {
-
     btnSat.read();
     btnVal.read();
-
 }
 
 bool isPressedSat() { return btnSat.isPressed(); }
