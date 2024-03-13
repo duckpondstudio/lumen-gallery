@@ -9,6 +9,10 @@
 // EncoderButton btnSat = EncoderButton(PIN_BTN_SAT);
 // EncoderButton btnVal = EncoderButton(PIN_BTN_VAL);
 
+Encoder encoder(PIN_ENC_A, PIN_ENC_B);
+// long encoderPosition = -999;
+long encoderPosition = 0;
+
 void setupInput() {
     // btnSat.begin();
     // btnVal.begin();
@@ -18,6 +22,11 @@ void loopInput() {
     // encoder.update();
     // btnSat.update();
     // btnVal.update();
+
+    long newPosition = encoder.read();
+    if (newPosition != encoderPosition) {
+        encoderPosition = newPosition;
+    }
 }
 
 // bool isPressedSat() { return btnSat.buttonState(); }
