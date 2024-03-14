@@ -20,11 +20,11 @@
 #endif
 
 #ifndef BUTTON_BUFFER_RISE
-#define BUTTON_BUFFER_RISE 2 // increment for buffer rising
+#define BUTTON_BUFFER_RISE 3 // increment for buffer rising
 #endif
 
 #ifndef BUTTON_BUFFER_FALL
-#define BUTTON_BUFFER_FALL 3 // decrement for buffer falling 
+#define BUTTON_BUFFER_FALL 2 // decrement for buffer falling 
 #endif
 
 class Button

@@ -18,15 +18,25 @@ void loopLEDs()
 
     CRGB color = CRGB(getColorHSV());
 
+    bool temp = false;
+    CRGB c = CRGB::Black;
+
     if (isPressedVal()) {
-        color = CRGB::Red;
+        temp = true;
+        c.red = 255;
     }
-    // if (isPressedSat()) {
-    //     color = CRGB::Green;
-    // }
-    // if (isPressedEnc()) {
-    //     color = CRGB::Blue;
-    // }
+    if (isPressedSat()) {
+        temp = true;
+        c.green = 255;
+    }
+    if (isPressedEnc()) {
+        temp = true;
+        c.blue = 255;
+    }
+    
+    if (temp) {
+        color = c;
+    }
 
     // if (isPressedEnc())
     // {
