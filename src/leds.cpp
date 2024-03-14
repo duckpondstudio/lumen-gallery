@@ -7,6 +7,12 @@ byte color1H = 0;
 byte color1S = 255;
 byte color1V = MAX_BRIGHTNESS;
 
+byte color2H = 0;
+byte color2S = 255;
+byte color2V = MAX_BRIGHTNESS;
+
+int currentColor = 1;
+
 void setupLEDs()
 {
     // FastLED.setBrightness(100);
