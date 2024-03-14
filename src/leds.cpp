@@ -51,6 +51,10 @@ void updateLEDs()
     // apply colors
     CRGB color = getColorRGB();
 
+    if (isPressedSat() && isPressedVal()) {
+        color = CRGB::Red;
+    }
+
     for (int i = 0; i < 40; i++)
     {
         leds[i] = color;
