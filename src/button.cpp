@@ -1,6 +1,13 @@
 #include "button.h"
 
-Button::Button(int pin, bool pullup, int bufferSize = BUTTON_BUFFER_DEFAULT_SIZE)
+Button::Button(int pin)
+    : m_pin{pin},
+      m_bufferSize{BUTTON_DEFAULT_BUFFER_SIZE},
+      m_bufferLimit{BUTTON_DEFAULT_BUFFER_SIZE + BUTTON_BUFFER_LIMIT}
+{
+    pinMode(pin, BUTTON_DEFAULT_PULLUP ? INPUT_PULLUP : INPUT);
+}
+Button::Button(int pin, bool pullup = BUTTON_DEFAULT_PULLUP, int bufferSize = BUTTON_DEFAULT_BUFFER_SIZE)
     : m_pin{pin},
       m_bufferSize{bufferSize},
       m_bufferLimit{bufferSize + BUTTON_BUFFER_LIMIT}
@@ -18,7 +25,8 @@ void Button::loop()
         {
             bool latched = pressed();
             m_buffer += BUTTON_BUFFER_RISE;
-            if (!latched && pressed()) {
+            if (!latched && pressed())
+            {
                 m_buffer += BUTTON_BUFFER_LATCH;
             }
             if (m_buffer > m_bufferLimit)
@@ -33,7 +41,8 @@ void Button::loop()
         {
             bool latched = !pressed();
             m_buffer -= BUTTON_BUFFER_FALL;
-            if (!latched && !pressed()) {
+            if (!latched && !pressed())
+            {
                 m_buffer -= BUTTON_BUFFER_LATCH;
             }
             if (m_buffer < 0)
@@ -44,6 +53,7 @@ void Button::loop()
     }
 }
 
-bool Button::pressed() {
+bool Button::pressed()
+{
     return m_buffer >= m_bufferSize;
 }
