@@ -7,7 +7,7 @@ static byte color1H = 0;
 static byte color1S = 255;
 static byte color1V = MAX_BRIGHTNESS;
 
-static byte color2H = 127;
+static byte color2H = 160;
 static byte color2S = 255;
 static byte color2V = MAX_BRIGHTNESS;
 
@@ -75,10 +75,10 @@ void updateLEDs()
     CRGB color1 = getColor1RGB();
     CRGB color2 = getColor2RGB();
 
-    if (isPressedSat() && isPressedVal()) {
-        color1 = CRGB::Red;
-        color2 = CRGB::Blue;
-    }
+    // if (isPressedSat() && isPressedVal()) {
+    //     color1 = CRGB::Red;
+    //     color2 = CRGB::Blue;
+    // }
 
     for (int i = 0; i < 40; i++)
     {
