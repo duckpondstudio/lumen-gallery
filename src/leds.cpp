@@ -10,7 +10,7 @@ byte color1V = 255;
 void setupLEDs()
 {
     FastLED.setBrightness(100);
-    FastLED.addLeds<WS2812, PIN_LEDS, GRB>(leds, 40);
+    FastLED.addLeds<CHIPSET, PIN_LEDS, RGB_ORDER>(leds, MAX_BRIGHTNESS);
 }
 
 byte test = 0;
