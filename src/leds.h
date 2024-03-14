@@ -3,7 +3,9 @@
 
 #include <Arduino.h>
 #include <FastLED.h>
+
 #include "pindef.h"
+#include "ledarrays.h"
 
 #define CHIPSET WS2812B
 #define RGB_ORDER GRB
