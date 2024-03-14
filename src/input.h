@@ -1,6 +1,8 @@
 #ifndef INPUT_H
 #define INPUT_H
 
+#include <avr/io.h>
+
 #include <Arduino.h>
 // #include <SimpleEncoder.h>
 // #include <EncoderButton.h>
@@ -17,6 +19,8 @@
 
 void setupInput();
 void loopInput();
+
+void updateEncoder();
 
 bool isPressedSat();
 bool isPressedVal();
