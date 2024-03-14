@@ -11,6 +11,9 @@
 
 void setupLEDs();
 void loopLEDs();
+void updateLEDs();
+
+void valueDelta(int delta);
 
 CHSV getColorHSV();
 CRGB getColorRGB();

@@ -41,17 +41,24 @@ void loopInput()
     updateEncoder();
     updateButtons();
 
+    // check for rotation 
     int newPos = encoder->getPosition();
     if (newPos != encoderPosition)
     {
+        int encoderDelta = newPos - encoderPosition;
+        // update new position 
         encoderPosition = newPos;
+        // pass delta to LEDs
+        valueDelta(encoderDelta);
     }
 }
 
 void updateEncoder()
 {
+    // update encoder 
     encoder->tick();
 }
+
 void updateButtons()
 {
     btnSat.loop();

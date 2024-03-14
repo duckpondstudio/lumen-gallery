@@ -8,6 +8,7 @@
 
 #include "pindef.h"
 #include "button.h"
+#include "leds.h"
 
 #define BTNS_DEBOUNCE 35
 #define BTNS_PULLUP true

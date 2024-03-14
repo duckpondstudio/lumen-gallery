@@ -7,25 +7,32 @@ byte color1H = 0;
 byte color1S = 255;
 byte color1V = 255;
 
+
 void setupLEDs()
 {
     FastLED.setBrightness(100);
     FastLED.addLeds<CHIPSET, PIN_LEDS, RGB_ORDER>(leds, MAX_BRIGHTNESS);
+
+    updateLEDs();
 }
 
 byte test = 0;
 
 void loopLEDs()
 {
+}
+
+void updateLEDs() {
 
     // determine HSV
 
     bool sat = isPressedSat();
     bool val = isPressedVal();
 
-    
 
-    // apply colors 
+    // apply colors
+
+    // color1H = encoderValueAsByte();
 
     CRGB color = CRGB(getColorHSV());
 
@@ -35,6 +42,12 @@ void loopLEDs()
     }
 
     FastLED.show();
+}
+
+// a value delta (typically +/- some small number) has been received from the encoder 
+void valueDelta(int delta) {
+    color1H += delta;
+    updateLEDs();
 }
 
 CHSV getColorHSV()
