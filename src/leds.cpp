@@ -49,16 +49,26 @@ void updateLEDs()
 {
 
     // apply colors
-    CRGB color = getColorRGB();
+    CRGB color1 = getColor1RGB();
+    CRGB color2 = getColor2RGB();
 
     if (isPressedSat() && isPressedVal()) {
-        color = CRGB::Red;
+        color1 = CRGB::Red;
+        color2 = CRGB::Blue;
     }
 
     for (int i = 0; i < 40; i++)
     {
-        
-        leds[i] = color;
+        // get blend value
+        byte blendAmt = getLEDValue(-1, i);
+
+        CRGB blendColor = CRGB(
+            blend8(color1.r, color2.r, blendAmt),
+            blend8(color1.g, color2.g, blendAmt),
+            blend8(color1.g, color2.b, blendAmt)
+        );
+
+        leds[i] = blendColor;
     }
 
     FastLED.show();
