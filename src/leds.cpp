@@ -23,16 +23,8 @@ void loopLEDs()
 
 void updateLEDs()
 {
-
-    // determine HSV
-
-    bool sat = isPressedSat();
-    bool val = isPressedVal();
-
+    
     // apply colors
-
-    // color1H = encoderValueAsByte();
-
     CRGB color = CRGB(getColorHSV());
 
     for (int i = 0; i < 40; i++)
