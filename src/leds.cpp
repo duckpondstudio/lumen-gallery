@@ -9,7 +9,7 @@ byte color1V = 255;
 
 void setupLEDs()
 {
-    FastLED.setBrightness(100);
+    // FastLED.setBrightness(100);
     FastLED.addLeds<CHIPSET, PIN_LEDS, RGB_ORDER>(leds, LEDS_COUNT);
 
     updateLEDs();
@@ -50,18 +50,37 @@ void valueDelta(int delta)
         else
         {
             // saturation
-            color1S += delta * S_DELTA_MULT;
+            int targetS = color1S + (delta * S_DELTA_MULT);
+            if (targetS > 255)
+            {
+                targetS = 255;
+            }
+            else if (targetS < 0)
+            {
+                targetS = 0;
+            }
+            color1S = (byte)targetS;
         }
     }
     else if (isPressedVal())
     {
         // value
-        color1V += delta * V_DELTA_MULT;
+        int targetV = color1V + (delta * V_DELTA_MULT);
+        if (targetV > 255)
+        {
+            targetV = 255;
+        }
+        else if (targetV < 0)
+        {
+            targetV = 0;
+        }
+        color1V = (byte)targetV;
     }
     else
     {
         // hue
-        color1H += delta * H_DELTA_MULT;
+        int targetH = color1H + (delta * V_DELTA_MULT);
+        color1H = (byte)targetH % 255;
     }
 
     updateLEDs();
