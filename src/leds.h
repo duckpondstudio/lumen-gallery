@@ -32,7 +32,11 @@ byte getCurrentColorH();
 byte getCurrentColorS();
 byte getCurrentColorV();
 
-CHSV getColorHSV();
-CRGB getColorRGB();
+CHSV getCurrentColorHSV();
+CRGB getCurrentColorRGB();
+CHSV getColor1HSV();
+CRGB getColor1RGB();
+CHSV getColor2HSV();
+CRGB getColor2RGB();
 
 #endif

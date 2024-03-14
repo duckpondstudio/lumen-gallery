@@ -57,6 +57,7 @@ void updateLEDs()
 
     for (int i = 0; i < 40; i++)
     {
+        
         leds[i] = color;
     }
 
@@ -121,14 +122,36 @@ byte getCurrentColorH() { return currentColor2 ? color2H : color1H; }
 byte getCurrentColorS() { return currentColor2 ? color2S : color1S; }
 byte getCurrentColorV() { return currentColor2 ? color2V : color1V; }
 
-CHSV getColorHSV()
+CHSV getCurrentColorHSV()
 {
     byte v = getCurrentColorV();
     return CHSV(getCurrentColorH(), getCurrentColorS(),
                 v == MIN_BRIGHTNESS ? 0 : v);
     // if value is zero, color is off
 }
-CRGB getColorRGB()
+CRGB getCurrentColorRGB()
 {
-    return CRGB(getColorHSV());
+    return CRGB(getCurrentColorV());
+}
+CHSV getColor1HSV()
+{
+    byte v = getCurrentColorV();
+    return CHSV(getCurrentColorH(), getCurrentColorS(),
+                v == MIN_BRIGHTNESS ? 0 : v);
+    // if value is zero, color is off
+}
+CRGB getColor1RGB()
+{
+    return CRGB(getColor1HSV());
+}
+CHSV getColor2HSV()
+{
+    byte v = getCurrentColorV();
+    return CHSV(getCurrentColorH(), getCurrentColorS(),
+                v == MIN_BRIGHTNESS ? 0 : v);
+    // if value is zero, color is off
+}
+CRGB getColor2RGB()
+{
+    return CRGB(getColor2HSV());
 }
