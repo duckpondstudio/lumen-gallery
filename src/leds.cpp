@@ -13,6 +13,9 @@ byte color2V = MAX_BRIGHTNESS;
 
 bool currentColor2 = false;
 
+static int currentPattern = PATTERN_CT_MIN;
+static bool lastToggledPattern = false;
+
 static bool lastPressedEnc = false;
 
 void setupLEDs()
@@ -32,6 +35,25 @@ void loopLEDs()
     // leds[2] = isPressedEnc() ? CRGB::Blue : CRGB::Red;
     // FastLED.show();
 
+    // determine toggle pattern state 
+    if (lastToggledPattern) {
+        // toggle pattern active, only disable on both inputs release 
+        if (!isPressedSat() && !isPressedVal()) {
+            lastToggledPattern = false;
+        }
+    } else {
+        // toggle pattern inactive, look for both sat+val inputs 
+        if (isPressedSat() && isPressedVal()) {
+            // todo: integrate timer delay
+            lastToggledPattern = true;
+            currentPattern++;
+            if (currentPattern > PATTERN_CT_MAX) {
+                currentPattern = PATTERN_CT_MIN;
+            }
+        }
+    }
+
+    // determine encoder state 
     bool pressedEnc = isPressedEnc();
     if (pressedEnc != lastPressedEnc)
     {
@@ -60,7 +82,7 @@ void updateLEDs()
     for (int i = 0; i < 40; i++)
     {
         // get blend value
-        byte blendAmt = getLEDValue(-1, i);
+        byte blendAmt = getLEDValue(currentPattern, i);
 
         CRGB blendColor = CRGB(
             blend8(color1.r, color2.r, blendAmt),
@@ -79,9 +101,9 @@ void valueDelta(int delta)
 {
 
     // determine state
-    if (isPressedSat())
+    if (!lastToggledPattern && isPressedSat())
     {
-        // saturation
+        // saturation (if toggle pattern state, only edit hue)
         if (isPressedVal())
         {
             // sat + val - neither
@@ -101,7 +123,7 @@ void valueDelta(int delta)
             setCurrentColorS((byte)targetS);
         }
     }
-    else if (isPressedVal())
+    else if (!lastToggledPattern && isPressedVal())
     {
         // value
         int targetV = getCurrentColorV() + (delta * V_DELTA_MULT);
