@@ -16,7 +16,18 @@ byte test = 0;
 void loopLEDs()
 {
 
-    CRGB color = CRGB::Green;
+    CRGB color = CRGB(getColorHSV());
+
+    if (isPressedVal()) {
+        color = CRGB::Red;
+    }
+    // if (isPressedSat()) {
+    //     color = CRGB::Green;
+    // }
+    // if (isPressedEnc()) {
+    //     color = CRGB::Blue;
+    // }
+
     // if (isPressedEnc())
     // {
     //     test = 1;
@@ -29,9 +40,8 @@ void loopLEDs()
 
         for (int i = 0; i < 40; i++)
         {
-            // leds[i] = CRGB::Blue;
-            // leds[i] = color;
-            leds[i] = CRGB(getColorHSV());
+            leds[i] = color;
+            // leds[i] = CRGB(getColorHSV());
         }
 
         FastLED.show();
