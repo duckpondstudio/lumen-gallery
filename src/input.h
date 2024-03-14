@@ -4,9 +4,6 @@
 #include <avr/io.h>
 
 #include <Arduino.h>
-// #include <SimpleEncoder.h>
-// #include <EncoderButton.h>
-// #include <Encoder.h>
 #include <RotaryEncoder.h>
 
 #include "pindef.h"
