@@ -7,12 +7,16 @@
 #define BUTTON_DEFAULT_PULLUP false // default value for whether buttons should be INPUT_PULLUP (t) or INPUT (f)
 #endif
 
-#ifndef BUTTON_BUFFER_LIMIT
-#define BUTTON_BUFFER_LIMIT 25 // value above full buffer size to limit the buffer to
+#ifndef BUTTON_DEFAULT_INVERT
+#define BUTTON_DEFAULT_INVERT false // default value for if a button's output is inverted
 #endif
 
 #ifndef BUTTON_DEFAULT_BUFFER_SIZE
 #define BUTTON_DEFAULT_BUFFER_SIZE 35 // default size used for a "full" buffer (eg, button is "on")
+#endif
+
+#ifndef BUTTON_BUFFER_LIMIT
+#define BUTTON_BUFFER_LIMIT 25 // value above full buffer size to limit the buffer to
 #endif
 
 #ifndef BUTTON_BUFFER_LATCH
@@ -31,14 +35,18 @@ class Button
 {
     private:
         const int m_pin;
+        const bool m_invert;
         const int m_bufferSize;
         const int m_bufferLimit;
-
+        
         int m_buffer;
 
     public:
         Button(int pin);
+        Button(int pin, int bufferSize);
         Button(int pin, bool pullup, int bufferSize);
+        Button(int pin, bool pullup, bool invert);
+        Button(int pin, bool pullup, bool invert, int bufferSize);
         void loop();
         bool pressed();
 };

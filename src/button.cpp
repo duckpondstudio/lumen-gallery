@@ -2,13 +2,47 @@
 
 Button::Button(int pin)
     : m_pin{pin},
+      m_invert{BUTTON_DEFAULT_INVERT},
       m_bufferSize{BUTTON_DEFAULT_BUFFER_SIZE},
       m_bufferLimit{BUTTON_DEFAULT_BUFFER_SIZE + BUTTON_BUFFER_LIMIT}
 {
     pinMode(pin, BUTTON_DEFAULT_PULLUP ? INPUT_PULLUP : INPUT);
 }
-Button::Button(int pin, bool pullup = BUTTON_DEFAULT_PULLUP, int bufferSize = BUTTON_DEFAULT_BUFFER_SIZE)
+Button::Button(int pin,
+               int bufferSize = BUTTON_DEFAULT_BUFFER_SIZE)
     : m_pin{pin},
+      m_invert{BUTTON_DEFAULT_INVERT},
+      m_bufferSize{bufferSize},
+      m_bufferLimit{bufferSize + BUTTON_BUFFER_LIMIT}
+{
+    pinMode(pin, BUTTON_DEFAULT_PULLUP ? INPUT_PULLUP : INPUT);
+}
+Button::Button(int pin,
+               bool pullup = BUTTON_DEFAULT_PULLUP,
+               int bufferSize = BUTTON_DEFAULT_BUFFER_SIZE)
+    : m_pin{pin},
+      m_invert{BUTTON_DEFAULT_INVERT},
+      m_bufferSize{bufferSize},
+      m_bufferLimit{bufferSize + BUTTON_BUFFER_LIMIT}
+{
+    pinMode(pin, pullup ? INPUT_PULLUP : INPUT);
+}
+Button::Button(int pin,
+               bool pullup = BUTTON_DEFAULT_PULLUP,
+               bool invert = BUTTON_DEFAULT_INVERT)
+    : m_pin{pin},
+      m_invert{invert},
+      m_bufferSize{BUTTON_DEFAULT_BUFFER_SIZE},
+      m_bufferLimit{BUTTON_DEFAULT_BUFFER_SIZE + BUTTON_BUFFER_LIMIT}
+{
+    pinMode(pin, pullup ? INPUT_PULLUP : INPUT);
+}
+Button::Button(int pin,
+               bool pullup = BUTTON_DEFAULT_PULLUP,
+               bool invert = BUTTON_DEFAULT_INVERT,
+               int bufferSize = BUTTON_DEFAULT_BUFFER_SIZE)
+    : m_pin{pin},
+      m_invert{invert},
       m_bufferSize{bufferSize},
       m_bufferLimit{bufferSize + BUTTON_BUFFER_LIMIT}
 {
@@ -53,7 +87,8 @@ void Button::loop()
     }
 }
 
+// returns true if the button is pressed (or false, if invert is set true)
 bool Button::pressed()
 {
-    return m_buffer >= m_bufferSize;
+    return m_invert ? m_buffer < m_bufferSize : m_buffer >= m_bufferSize;
 }
