@@ -16,7 +16,7 @@ void Button::loop()
     {
         if (m_buffer < m_bufferLimit)
         {
-            bool latched = !pressed();
+            bool latched = pressed();
             m_buffer += BUTTON_BUFFER_RISE;
             if (!latched && pressed()) {
                 m_buffer += BUTTON_BUFFER_LATCH;
@@ -31,7 +31,11 @@ void Button::loop()
     {
         if (m_buffer > 0)
         {
+            bool latched = !pressed();
             m_buffer -= BUTTON_BUFFER_FALL;
+            if (!latched && !pressed()) {
+                m_buffer -= BUTTON_BUFFER_LATCH;
+            }
             if (m_buffer < 0)
             {
                 m_buffer = 0;
