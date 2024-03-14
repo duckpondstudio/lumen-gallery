@@ -8,15 +8,15 @@ RotaryEncoder *encoder = nullptr;
 // OneButtonTiny btnVal = OneButtonTiny(PIN_BTN_SAT, BTNS_ACTIVE_LOW, BTNS_PULLUP);
 // OneButtonTiny btnEnc = OneButtonTiny(PIN_BTN_SAT, BTNS_ACTIVE_LOW, BTNS_PULLUP);
 
-Button btnSat(PIN_BTN_SAT, BTNS_DEBOUNCE);
-Button btnVal(PIN_BTN_VAL, BTNS_DEBOUNCE);
-Button btnEnc(PIN_BTN_ENC, BTNS_DEBOUNCE);
+// Button btnSat(PIN_BTN_SAT, BTNS_DEBOUNCE);
+// Button btnVal(PIN_BTN_VAL, BTNS_DEBOUNCE);
+// Button btnEnc(PIN_BTN_ENC, BTNS_DEBOUNCE);
 
 void setupInput()
 {
-    btnSat.begin();
-    btnVal.begin();
-    btnEnc.begin();
+    // btnSat.begin();
+    // btnVal.begin();
+    // btnEnc.begin();
 
     // 11.2.2 on ATtinyX4 datasheet
     // GIMSK General Interrupt Mask Register
@@ -66,12 +66,12 @@ void updateButtons()
 // bool isPressedSat() { return isButtonPressed(btnSat); }
 // bool isPressedVal() { return isButtonPressed(btnVal); }
 // bool isPressedEnc() { return isButtonPressed(btnEnc); }
-bool isPressedSat() { return btnSat.pressed(); }
-bool isPressedVal() { return btnVal.pressed(); }
-bool isPressedEnc() { return btnEnc.pressed(); }
-// bool isPressedSat() { return false; }
-// bool isPressedVal() { return false; }
-// bool isPressedEnc() { return false; }
+// bool isPressedSat() { return btnSat.pressed(); }
+// bool isPressedVal() { return btnVal.pressed(); }
+// bool isPressedEnc() { return btnEnc.pressed(); }
+bool isPressedSat() { return false; }
+bool isPressedVal() { return false; }
+bool isPressedEnc() { return false; }
 
 // bool isButtonPressed(OneButtonTiny btn)
 // {
