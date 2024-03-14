@@ -5,8 +5,6 @@
 
 #include <Arduino.h>
 #include <RotaryEncoder.h>
-// #include <OneButtonTiny.h>
-// #include <Button.h>
 
 #include "pindef.h"
 #include "button.h"
@@ -26,7 +24,6 @@ void updateButtons();
 bool isPressedSat();
 bool isPressedVal();
 bool isPressedEnc();
-// bool isButtonPressed(OneButtonTiny btn);
 
 byte encoderValueAsByte();
 int encoderValue();
