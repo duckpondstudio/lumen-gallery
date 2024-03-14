@@ -9,6 +9,7 @@
 // #include <Button.h>
 
 #include "pindef.h"
+#include "button.h"
 
 #define BTNS_DEBOUNCE 35
 #define BTNS_PULLUP true

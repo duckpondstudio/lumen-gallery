@@ -12,6 +12,10 @@ RotaryEncoder *encoder = nullptr;
 // Button btnVal(PIN_BTN_VAL, BTNS_DEBOUNCE);
 // Button btnEnc(PIN_BTN_ENC, BTNS_DEBOUNCE);
 
+Button btnSat(PIN_BTN_SAT);
+Button btnVal(PIN_BTN_VAL);
+Button btnEnc(PIN_BTN_ENC);
+
 void setupInput()
 {
     // btnSat.begin();
@@ -61,17 +65,20 @@ void updateButtons()
     // btnSat.tick();
     // btnVal.tick();
     // btnEnc.tick();
+    btnSat.loop();
+    btnVal.loop();
+    btnEnc.loop();
 }
 
 // bool isPressedSat() { return isButtonPressed(btnSat); }
 // bool isPressedVal() { return isButtonPressed(btnVal); }
 // bool isPressedEnc() { return isButtonPressed(btnEnc); }
-// bool isPressedSat() { return btnSat.pressed(); }
-// bool isPressedVal() { return btnVal.pressed(); }
-// bool isPressedEnc() { return btnEnc.pressed(); }
-bool isPressedSat() { return false; }
-bool isPressedVal() { return false; }
-bool isPressedEnc() { return false; }
+bool isPressedSat() { return btnSat.pressed(); }
+bool isPressedVal() { return btnVal.pressed(); }
+bool isPressedEnc() { return btnEnc.pressed(); }
+// bool isPressedSat() { return false; }
+// bool isPressedVal() { return false; }
+// bool isPressedEnc() { return false; }
 
 // bool isButtonPressed(OneButtonTiny btn)
 // {
