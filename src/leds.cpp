@@ -18,6 +18,15 @@ byte test = 0;
 void loopLEDs()
 {
 
+    // determine HSV
+
+    bool sat = isPressedSat();
+    bool val = isPressedVal();
+
+    
+
+    // apply colors 
+
     CRGB color = CRGB(getColorHSV());
 
     for (int i = 0; i < 40; i++)
