@@ -145,8 +145,8 @@ CRGB getCurrentColorRGB()
 }
 CHSV getColor1HSV()
 {
-    byte v = getCurrentColorV();
-    return CHSV(getCurrentColorH(), getCurrentColorS(),
+    byte v = color1V;
+    return CHSV(color1H, color1S,
                 v == MIN_BRIGHTNESS ? 0 : v);
     // if value is zero, color is off
 }
@@ -156,8 +156,8 @@ CRGB getColor1RGB()
 }
 CHSV getColor2HSV()
 {
-    byte v = getCurrentColorV();
-    return CHSV(getCurrentColorH(), getCurrentColorS(),
+    byte v = color2V;
+    return CHSV(color2H, color2S,
                 v == MIN_BRIGHTNESS ? 0 : v);
     // if value is zero, color is off
 }
