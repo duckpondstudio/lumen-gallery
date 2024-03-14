@@ -23,7 +23,7 @@ void loopLEDs()
 
 void updateLEDs()
 {
-    
+
     // apply colors
     CRGB color = CRGB(getColorHSV());
 
@@ -50,18 +50,18 @@ void valueDelta(int delta)
         else
         {
             // saturation
-            color1S += delta;
+            color1S += delta * S_DELTA_MULT;
         }
     }
     else if (isPressedVal())
     {
         // value
-        color1V += delta;
+        color1V += delta * V_DELTA_MULT;
     }
     else
     {
         // hue
-        color1H += delta;
+        color1H += delta * H_DELTA_MULT;
     }
 
     updateLEDs();
