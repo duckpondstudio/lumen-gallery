@@ -7,7 +7,6 @@ byte color1H = 0;
 byte color1S = 255;
 byte color1V = 255;
 
-
 void setupLEDs()
 {
     FastLED.setBrightness(100);
@@ -22,13 +21,13 @@ void loopLEDs()
 {
 }
 
-void updateLEDs() {
+void updateLEDs()
+{
 
     // determine HSV
 
     bool sat = isPressedSat();
     bool val = isPressedVal();
-
 
     // apply colors
 
@@ -44,9 +43,35 @@ void updateLEDs() {
     FastLED.show();
 }
 
-// a value delta (typically +/- some small number) has been received from the encoder 
-void valueDelta(int delta) {
-    color1H += delta;
+// a value delta (typically +/- some small number) has been received from the encoder
+void valueDelta(int delta)
+{
+
+    // determine state
+    if (isPressedSat())
+    {
+        // saturation
+        if (isPressedVal())
+        {
+            // sat + val - neither
+        }
+        else
+        {
+            // saturation
+            color1S += delta;
+        }
+    }
+    else if (isPressedVal())
+    {
+        // value
+        color1V += delta;
+    }
+    else
+    {
+        // hue
+        color1H += delta;
+    }
+
     updateLEDs();
 }
 
