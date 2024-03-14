@@ -1,7 +1,7 @@
 #include "leds.h"
 #include "input.h"
 
-CRGB leds[40];
+CRGB leds[LEDS_COUNT];
 
 byte color1H = 0;
 byte color1S = 255;
@@ -10,7 +10,7 @@ byte color1V = 255;
 void setupLEDs()
 {
     FastLED.setBrightness(100);
-    FastLED.addLeds<CHIPSET, PIN_LEDS, RGB_ORDER>(leds);
+    FastLED.addLeds<CHIPSET, PIN_LEDS, RGB_ORDER>(leds, LEDS_COUNT);
 
     updateLEDs();
 }

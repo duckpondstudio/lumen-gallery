@@ -8,6 +8,8 @@
 #define CHIPSET WS2812B
 #define RGB_ORDER GRB
 
+#define LEDS_COUNT
+
 #define H_DELTA_MULT 1
 #define S_DELTA_MULT 4
 #define V_DELTA_MULT 2
