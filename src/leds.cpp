@@ -7,11 +7,13 @@ byte color1H = 0;
 byte color1S = 255;
 byte color1V = MAX_BRIGHTNESS;
 
-byte color2H = 0;
+byte color2H = 127;
 byte color2S = 255;
 byte color2V = MAX_BRIGHTNESS;
 
 bool currentColor2 = false;
+
+static bool lastPressedEnc = false;
 
 void setupLEDs()
 {
@@ -29,13 +31,25 @@ void loopLEDs()
     // leds[1] = isPressedSat() ? CRGB::Blue : CRGB::Red;
     // leds[2] = isPressedEnc() ? CRGB::Blue : CRGB::Red;
     // FastLED.show();
+
+    bool pressedEnc = isPressedEnc();
+    if (pressedEnc != lastPressedEnc)
+    {
+        lastPressedEnc = pressedEnc;
+        if (pressedEnc)
+        {
+            // pressed encoder down, switch colors
+            currentColor2 = !currentColor2;
+            updateLEDs();
+        }
+    }
 }
 
 void updateLEDs()
 {
 
     // apply colors
-    CRGB color = CRGB(getColorHSV());
+    CRGB color = getColorRGB();
 
     for (int i = 0; i < 40; i++)
     {
@@ -96,17 +110,18 @@ void valueDelta(int delta)
     updateLEDs();
 }
 
-byte setCurrentColorH(byte value) { currentColor2 ? color2H = value : color1H = value; }
-byte setCurrentColorS(byte value) { currentColor2 ? color2S = value : color1S = value; }
-byte setCurrentColorV(byte value) { currentColor2 ? color2V = value : color1V = value; }
-byte getCurrentColorH() { currentColor2 ? color2H : color1H; }
-byte getCurrentColorS() { currentColor2 ? color2S : color1S; }
-byte getCurrentColorV() { currentColor2 ? color2V : color1V; }
+void setCurrentColorH(byte value) { currentColor2 ? color2H = value : color1H = value; }
+void setCurrentColorS(byte value) { currentColor2 ? color2S = value : color1S = value; }
+void setCurrentColorV(byte value) { currentColor2 ? color2V = value : color1V = value; }
+byte getCurrentColorH() { return currentColor2 ? color2H : color1H; }
+byte getCurrentColorS() { return currentColor2 ? color2S : color1S; }
+byte getCurrentColorV() { return currentColor2 ? color2V : color1V; }
 
 CHSV getColorHSV()
 {
+    byte v = getCurrentColorV();
     return CHSV(getCurrentColorH(), getCurrentColorS(),
-                getCurrentColorV() == MIN_BRIGHTNESS ? 0 : getCurrentColorV());
+                v == MIN_BRIGHTNESS ? 0 : v);
     // if value is zero, color is off
 }
 CRGB getColorRGB()

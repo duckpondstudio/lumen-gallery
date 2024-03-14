@@ -23,9 +23,9 @@ void updateLEDs();
 
 void valueDelta(int delta);
 
-byte setCurrentColorH(byte value);
-byte setCurrentColorS(byte value);
-byte setCurrentColorV(byte value);
+void setCurrentColorH(byte value);
+void setCurrentColorS(byte value);
+void setCurrentColorV(byte value);
 byte getCurrentColorH();
 byte getCurrentColorS();
 byte getCurrentColorV();
