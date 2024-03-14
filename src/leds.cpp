@@ -3,7 +3,9 @@
 
 CRGB leds[40];
 
-byte hsv = 0;
+byte color1H = 0;
+byte color1S = 255;
+byte color1V = 255;
 
 void setupLEDs()
 {
@@ -18,60 +20,17 @@ void loopLEDs()
 
     CRGB color = CRGB(getColorHSV());
 
-    bool temp = false;
-    CRGB c = CRGB::Black;
-
-    if (isPressedVal()) {
-        temp = true;
-        c.red = 255;
-    }
-    if (isPressedSat()) {
-        temp = true;
-        c.green = 255;
-    }
-    if (isPressedEnc()) {
-        temp = true;
-        c.blue = 255;
-    }
-    
-    if (temp) {
-        color = c;
+    for (int i = 0; i < 40; i++)
+    {
+        leds[i] = color;
     }
 
-    // if (isPressedEnc())
-    // {
-    //     test = 1;
-    // }
-    // if (test > 0)
-    // {
-    //     test--;
-    //     color = CRGB::Blue;
-    // }
-
-        for (int i = 0; i < 40; i++)
-        {
-            leds[i] = color;
-            // leds[i] = CRGB(getColorHSV());
-        }
-
-        FastLED.show();
+    FastLED.show();
 }
 
 CHSV getColorHSV()
 {
-    // if (isPressedSat())
-    // {
-    //     if (isPressedVal())
-    //     {
-    //         return CHSV(0, 0, 255);
-    //     }
-    //     return CHSV(96, 255, 255);
-    // }
-    // else if (isPressedVal())
-    // {
-    //     return CHSV(0, 255, 255);
-    // }
-    return CHSV(encoderValueAsByte(), 255, 255);
+    return CHSV(color1H, color1S, color1V);
 }
 CRGB getColorRGB()
 {
