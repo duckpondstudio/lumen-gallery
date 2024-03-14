@@ -23,6 +23,13 @@ void updateLEDs();
 
 void valueDelta(int delta);
 
+byte setCurrentColorH(byte value);
+byte setCurrentColorS(byte value);
+byte setCurrentColorV(byte value);
+byte getCurrentColorH();
+byte getCurrentColorS();
+byte getCurrentColorV();
+
 CHSV getColorHSV();
 CRGB getColorRGB();
 
