@@ -10,12 +10,12 @@
 
 #define LEDS_COUNT 40
 
-#define H_DELTA_MULT 1
-#define S_DELTA_MULT 4
+#define H_DELTA_MULT 2
+#define S_DELTA_MULT 5
 #define V_DELTA_MULT 2
 
-#define MIN_BRIGHTNESS 4
-#define MAX_BRIGHTNESS 50
+#define MIN_BRIGHTNESS 5
+#define MAX_BRIGHTNESS 100
 
 void setupLEDs();
 void loopLEDs();

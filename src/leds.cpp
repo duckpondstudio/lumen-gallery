@@ -5,7 +5,7 @@ CRGB leds[LEDS_COUNT];
 
 byte color1H = 0;
 byte color1S = 255;
-byte color1V = 255;
+byte color1V = MAX_BRIGHTNESS;
 
 void setupLEDs()
 {
@@ -19,6 +19,10 @@ byte test = 0;
 
 void loopLEDs()
 {
+    // leds[0] = isPressedVal() ? CRGB::Blue : CRGB::Red;
+    // leds[1] = isPressedSat() ? CRGB::Blue : CRGB::Red;
+    // leds[2] = isPressedEnc() ? CRGB::Blue : CRGB::Red;
+    // FastLED.show();
 }
 
 void updateLEDs()
@@ -46,8 +50,6 @@ void valueDelta(int delta)
         if (isPressedVal())
         {
             // sat + val - neither
-            int targetH = color1H + (delta * V_DELTA_MULT);
-            color1H = (byte)targetH % 255;
         }
         else
         {
@@ -68,19 +70,21 @@ void valueDelta(int delta)
     {
         // value
         int targetV = color1V + (delta * V_DELTA_MULT);
-        if (targetV > 255)
+        if (targetV > MAX_BRIGHTNESS)
         {
-            targetV = 255;
+            targetV = MAX_BRIGHTNESS;
         }
-        else if (targetV < 0)
+        else if (targetV < MIN_BRIGHTNESS)
         {
-            targetV = 0;
+            targetV = MIN_BRIGHTNESS;
         }
-        color1V = (byte)map(targetV, 0, 255, MIN_BRIGHTNESS, MAX_BRIGHTNESS);
+        color1V = (byte)targetV;
     }
     else
     {
         // hue
+        int targetH = color1H + (delta * H_DELTA_MULT);
+        color1H = (byte)targetH % 255;
     }
 
     updateLEDs();
@@ -88,7 +92,9 @@ void valueDelta(int delta)
 
 CHSV getColorHSV()
 {
-    return CHSV(color1H, color1S, color1V);
+    return CHSV(color1H, color1S,
+                color1V == MIN_BRIGHTNESS ? 0 : color1V);
+    // if value is zero, color is off
 }
 CRGB getColorRGB()
 {
