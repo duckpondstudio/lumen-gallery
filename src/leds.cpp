@@ -46,6 +46,8 @@ void valueDelta(int delta)
         if (isPressedVal())
         {
             // sat + val - neither
+            int targetH = color1H + (delta * V_DELTA_MULT);
+            color1H = (byte)targetH % 255;
         }
         else
         {
@@ -74,13 +76,11 @@ void valueDelta(int delta)
         {
             targetV = 0;
         }
-        color1V = (byte)targetV;
+        color1V = (byte)map(targetV, 0, 255, MIN_BRIGHTNESS, MAX_BRIGHTNESS);
     }
     else
     {
         // hue
-        int targetH = color1H + (delta * V_DELTA_MULT);
-        color1H = (byte)targetH % 255;
     }
 
     updateLEDs();
@@ -88,7 +88,7 @@ void valueDelta(int delta)
 
 CHSV getColorHSV()
 {
-    return CHSV(color1H, color1S, map(color1V, 0, 255, MIN_BRIGHTNESS, MAX_BRIGHTNESS));
+    return CHSV(color1H, color1S, color1V);
 }
 CRGB getColorRGB()
 {

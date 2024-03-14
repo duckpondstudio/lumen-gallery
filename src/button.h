@@ -28,27 +28,27 @@
 #endif
 
 #ifndef BUTTON_BUFFER_FALL
-#define BUTTON_BUFFER_FALL 2 // decrement for buffer falling 
+#define BUTTON_BUFFER_FALL 2 // decrement for buffer falling
 #endif
 
 class Button
 {
-    private:
-        const int m_pin;
-        const bool m_invert;
-        const int m_bufferSize;
-        const int m_bufferLimit;
-        
-        int m_buffer;
+private:
+    const int m_pin;
+    const bool m_invert;
+    const int m_bufferSize;
+    const int m_bufferLimit;
 
-    public:
-        Button(int pin);
-        Button(int pin, int bufferSize);
-        Button(int pin, bool pullup, int bufferSize);
-        Button(int pin, bool pullup, bool invert);
-        Button(int pin, bool pullup, bool invert, int bufferSize);
-        void loop();
-        bool pressed();
+    int m_buffer;
+
+public:
+    Button(int pin);
+    Button(int pin, int bufferSize);
+    Button(int pin, bool pullup, int bufferSize);
+    Button(int pin, bool pullup, bool invert);
+    Button(int pin, bool pullup, bool invert, int bufferSize);
+    void loop();
+    bool pressed();
 };
 
 #endif
