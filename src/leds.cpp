@@ -50,6 +50,7 @@ void loopLEDs()
             if (currentPattern > PATTERN_CT_MAX) {
                 currentPattern = PATTERN_CT_MIN;
             }
+            updateLEDs();
         }
     }
 
