@@ -3,13 +3,13 @@
 
 CRGB leds[LEDS_COUNT];
 
-byte color1H = 0;
-byte color1S = 255;
-byte color1V = MAX_BRIGHTNESS;
+static byte color1H = 0;
+static byte color1S = 255;
+static byte color1V = MAX_BRIGHTNESS;
 
-byte color2H = 127;
-byte color2S = 255;
-byte color2V = MAX_BRIGHTNESS;
+static byte color2H = 127;
+static byte color2S = 255;
+static byte color2V = MAX_BRIGHTNESS;
 
 bool currentColor2 = false;
 
@@ -157,14 +157,11 @@ byte getCurrentColorV() { return currentColor2 ? color2V : color1V; }
 
 CHSV getCurrentColorHSV()
 {
-    byte v = getCurrentColorV();
-    return CHSV(getCurrentColorH(), getCurrentColorS(),
-                v == MIN_BRIGHTNESS ? 0 : v);
-    // if value is zero, color is off
+    return currentColor2 ? getColor2HSV() : getColor1HSV();
 }
 CRGB getCurrentColorRGB()
 {
-    return CRGB(getCurrentColorV());
+    return currentColor2 ? getColor2RGB() : getColor1RGB();
 }
 CHSV getColor1HSV()
 {
