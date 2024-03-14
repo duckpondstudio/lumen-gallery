@@ -10,7 +10,7 @@ byte color1V = 255;
 void setupLEDs()
 {
     FastLED.setBrightness(100);
-    FastLED.addLeds<CHIPSET, PIN_LEDS, RGB_ORDER>(leds, MAX_BRIGHTNESS);
+    FastLED.addLeds<CHIPSET, PIN_LEDS, RGB_ORDER>(leds);
 
     updateLEDs();
 }
@@ -69,7 +69,7 @@ void valueDelta(int delta)
 
 CHSV getColorHSV()
 {
-    return CHSV(color1H, color1S, color1V);
+    return CHSV(color1H, color1S, map(color1V, 0, 255, MIN_BRIGHTNESS, MAX_BRIGHTNESS));
 }
 CRGB getColorRGB()
 {

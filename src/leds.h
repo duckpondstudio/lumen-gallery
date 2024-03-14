@@ -7,7 +7,8 @@
 
 #define CHIPSET WS2812B
 #define RGB_ORDER GRB
-#define MAX_BRIGHTNESS 60
+#define MIN_BRIGHTNESS 4
+#define MAX_BRIGHTNESS 50
 
 void setupLEDs();
 void loopLEDs();
