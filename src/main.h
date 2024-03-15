@@ -6,6 +6,7 @@
 #include "pindef.h"
 #include "input.h"
 #include "leds.h"
+#include "savedata.h"
 
 
 void setupLEDs();

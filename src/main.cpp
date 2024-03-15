@@ -2,6 +2,7 @@
 
 void setup()
 {
+    setupSaveData();
     setupInput();
     setupLEDs();
 }

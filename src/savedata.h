@@ -3,4 +3,6 @@
 
 #include <eewl.h>
 
+void setupSaveData();
+
 #endif
