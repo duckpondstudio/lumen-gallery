@@ -4,7 +4,7 @@
 #include <Arduino.h>
 
 #ifndef BUTTON_DEFAULT_PULLUP
-#define BUTTON_DEFAULT_PULLUP false // default value for whether buttons should be INPUT_PULLUP (t) or INPUT (f)
+#define BUTTON_DEFAULT_PULLUP true // default value for whether buttons should be INPUT_PULLUP (t) or INPUT (f)
 #endif
 
 #ifndef BUTTON_DEFAULT_INVERT
