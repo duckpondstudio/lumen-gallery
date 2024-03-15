@@ -86,7 +86,7 @@ void updateLEDs()
     //     color2 = CRGB::Blue;
     // }
 
-    for (int i = 0; i < 40; i++)
+    for (int i = 0; i < LEDS_COUNT; i++)
     {
         // get blend value
         byte blendAmt = getLEDValue(currentPattern, i);
