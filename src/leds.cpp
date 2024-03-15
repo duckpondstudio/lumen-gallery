@@ -31,10 +31,6 @@ byte test = 0;
 
 void loopLEDs()
 {
-    // leds[0] = isPressedVal() ? CRGB::Blue : CRGB::Red;
-    // leds[1] = isPressedSat() ? CRGB::Blue : CRGB::Red;
-    // leds[2] = isPressedEnc() ? CRGB::Blue : CRGB::Red;
-    // FastLED.show();
 
     // determine toggle pattern state
     if (lastToggledPattern)
@@ -69,7 +65,6 @@ void loopLEDs()
         if (pressedEnc)
         {
             // pressed encoder down, switch colors
-            // currentColor2 = !currentColor2;
             patternInverted = !patternInverted;
             updateLEDs();
         }
@@ -83,26 +78,10 @@ void updateLEDs()
     CRGB color1 = getColor1RGB();
     CRGB color2 = getColor2RGB();
 
-    // if (isPressedSat() && isPressedVal()) {
-    //     color1 = CRGB::Red;
-    //     color2 = CRGB::Blue;
-    // }
-
     for (int i = 0; i < LEDS_COUNT; i++)
     {
         // get blend value
         byte blendAmt = getLEDValue(currentPattern, i);
-
-        // CRGB blendColor = blendAmt >= 128 ? color2 : color1;
-
-        // CRGB blendColor = CRGB(
-        //     blend8(color1.r, color2.r, blendAmt),
-        //     blend8(color1.g, color2.g, blendAmt),
-        //     blend8(color1.g, color2.b, blendAmt));
-
-        // int index = patternInverted ? (LEDS_COUNT - 1) - i : i;
-        // leds[index] = blend(color1, color2, blendAmt);
-        // leds[i] = blend(color2, color1, patternInverted ? 255 - blendAmt : blendAmt);
         leds[i] = patternInverted ? blend(color2, color1, blendAmt) : blend(color1, color2, blendAmt);
     }
 
