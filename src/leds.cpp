@@ -47,7 +47,7 @@ void loopLEDs()
     else
     {
         // toggle pattern inactive, look for both sat+val inputs
-        if (isPressedSat() && isPressedVal())
+        if (isPressedSat() || isPressedVal())
         {
             // todo: integrate timer delay
             lastToggledPattern = true;
@@ -91,12 +91,14 @@ void updateLEDs()
         // get blend value
         byte blendAmt = getLEDValue(currentPattern, i);
 
-        CRGB blendColor = CRGB(
-            blend8(color1.r, color2.r, blendAmt),
-            blend8(color1.g, color2.g, blendAmt),
-            blend8(color1.g, color2.b, blendAmt));
+        // CRGB blendColor = blendAmt >= 128 ? color2 : color1;
 
-        leds[i] = blendColor;
+        // CRGB blendColor = CRGB(
+        //     blend8(color1.r, color2.r, blendAmt),
+        //     blend8(color1.g, color2.g, blendAmt),
+        //     blend8(color1.g, color2.b, blendAmt));
+
+        leds[i] = blend(color1, color2, blendAmt);
     }
 
     FastLED.show();
