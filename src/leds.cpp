@@ -15,7 +15,7 @@ bool currentColor2 = false;
 
 static int currentPattern = PATTERN_CT_DEFAULT;
 static bool lastToggledPattern = false;
-static bool patternInverted = true;
+static bool patternInverted = false;
 
 static bool lastPressedEnc = false;
 
@@ -69,7 +69,8 @@ void loopLEDs()
         if (pressedEnc)
         {
             // pressed encoder down, switch colors
-            currentColor2 = !currentColor2;
+            // currentColor2 = !currentColor2;
+            patternInverted = !patternInverted;
             updateLEDs();
         }
     }
@@ -99,8 +100,10 @@ void updateLEDs()
         //     blend8(color1.g, color2.g, blendAmt),
         //     blend8(color1.g, color2.b, blendAmt));
 
-        int index = patternInverted ? (LEDS_COUNT - 1) - i : i;
-        leds[index] = blend(color1, color2, blendAmt);
+        // int index = patternInverted ? (LEDS_COUNT - 1) - i : i;
+        // leds[index] = blend(color1, color2, blendAmt);
+        // leds[i] = blend(color2, color1, patternInverted ? 255 - blendAmt : blendAmt);
+        leds[i] = patternInverted ? blend(color2, color1, blendAmt) : blend(color1, color2, blendAmt);
     }
 
     FastLED.show();
@@ -145,7 +148,7 @@ void valueDelta(int delta)
         }
     }
 
-    // ignore unassigned state 
+    // ignore unassigned state
     if (state == 0)
     {
         return;
