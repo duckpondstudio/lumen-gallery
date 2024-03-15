@@ -15,6 +15,7 @@ bool currentColor2 = false;
 
 static int currentPattern = PATTERN_CT_DEFAULT;
 static bool lastToggledPattern = false;
+static bool patternInverted = true;
 
 static bool lastPressedEnc = false;
 
@@ -98,7 +99,8 @@ void updateLEDs()
         //     blend8(color1.g, color2.g, blendAmt),
         //     blend8(color1.g, color2.b, blendAmt));
 
-        leds[i] = blend(color1, color2, blendAmt);
+        int index = patternInverted ? (LEDS_COUNT - 1) - i : i;
+        leds[index] = blend(color1, color2, blendAmt);
     }
 
     FastLED.show();
