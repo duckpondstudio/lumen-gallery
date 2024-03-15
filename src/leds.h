@@ -7,6 +7,7 @@
 #include "pindef.h"
 #include "ledarrays.h"
 #include "input.h"
+#include "savedata.h"
 
 #define CHIPSET WS2812B
 #define RGB_ORDER GRB
