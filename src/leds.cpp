@@ -13,7 +13,7 @@ static byte color2V = MAX_BRIGHTNESS;
 
 bool currentColor2 = false;
 
-static int currentPattern = PATTERN_CT_MIN;
+static int currentPattern = PATTERN_CT_DEFAULT;
 static bool lastToggledPattern = false;
 
 static bool lastPressedEnc = false;
