@@ -39,7 +39,7 @@ void loopLEDs()
     if (lastToggledPattern)
     {
         // toggle pattern active, only disable on both inputs release
-        if (!isPressedSat() && !isPressedVal())
+        if (!isPressedSat() || !isPressedVal())
         {
             lastToggledPattern = false;
         }
@@ -47,7 +47,7 @@ void loopLEDs()
     else
     {
         // toggle pattern inactive, look for both sat+val inputs
-        if (isPressedSat() || isPressedVal())
+        if (isPressedSat() && isPressedVal())
         {
             // todo: integrate timer delay
             lastToggledPattern = true;
