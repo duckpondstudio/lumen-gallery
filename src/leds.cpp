@@ -35,26 +35,32 @@ void loopLEDs()
     // leds[2] = isPressedEnc() ? CRGB::Blue : CRGB::Red;
     // FastLED.show();
 
-    // determine toggle pattern state 
-    if (lastToggledPattern) {
-        // toggle pattern active, only disable on both inputs release 
-        if (!isPressedSat() && !isPressedVal()) {
+    // determine toggle pattern state
+    if (lastToggledPattern)
+    {
+        // toggle pattern active, only disable on both inputs release
+        if (!isPressedSat() && !isPressedVal())
+        {
             lastToggledPattern = false;
         }
-    } else {
-        // toggle pattern inactive, look for both sat+val inputs 
-        if (isPressedSat() && isPressedVal()) {
+    }
+    else
+    {
+        // toggle pattern inactive, look for both sat+val inputs
+        if (isPressedSat() && isPressedVal())
+        {
             // todo: integrate timer delay
             lastToggledPattern = true;
             currentPattern++;
-            if (currentPattern > PATTERN_CT_MAX) {
+            if (currentPattern > PATTERN_CT_MAX)
+            {
                 currentPattern = PATTERN_CT_MIN;
             }
             updateLEDs();
         }
     }
 
-    // determine encoder state 
+    // determine encoder state
     bool pressedEnc = isPressedEnc();
     if (pressedEnc != lastPressedEnc)
     {
@@ -88,8 +94,7 @@ void updateLEDs()
         CRGB blendColor = CRGB(
             blend8(color1.r, color2.r, blendAmt),
             blend8(color1.g, color2.g, blendAmt),
-            blend8(color1.g, color2.b, blendAmt)
-        );
+            blend8(color1.g, color2.b, blendAmt));
 
         leds[i] = blendColor;
     }
@@ -100,33 +105,64 @@ void updateLEDs()
 // a value delta (typically +/- some small number) has been received from the encoder
 void valueDelta(int delta)
 {
+    // state: 0=none, 1=hue, 2=sat, 3=val
+    int state = 0;
 
     // determine state
-    if (!lastToggledPattern && isPressedSat())
+    if (lastToggledPattern)
     {
-        // saturation (if toggle pattern state, only edit hue)
-        if (isPressedVal())
+        // toggled pattern, state is hue
+        state = 1;
+    }
+    else
+    {
+        if (isPressedSat())
         {
-            // sat + val - neither
+            // saturation (if toggle pattern state, only edit hue)
+            if (isPressedVal())
+            {
+                // sat + val - neither
+            }
+            else
+            {
+                // saturation
+                state = 2;
+            }
+        }
+        else if (isPressedVal())
+        {
+            // value
+            state = 3;
         }
         else
         {
-            // saturation
-            int targetS = getCurrentColorS() + (delta * S_DELTA_MULT);
-            if (targetS > 255)
-            {
-                targetS = 255;
-            }
-            else if (targetS < 0)
-            {
-                targetS = 0;
-            }
-            setCurrentColorS((byte)targetS);
+            // hue
+            state = 1;
         }
     }
-    else if (!lastToggledPattern && isPressedVal())
+
+    switch (state)
     {
-        // value
+    case 1:
+        // hue
+        int targetH = getCurrentColorH() + (delta * H_DELTA_MULT);
+        setCurrentColorH((byte)targetH);
+        break;
+    case 2:
+        // sat
+        int targetS = getCurrentColorS() + (delta * S_DELTA_MULT);
+        if (targetS > 255)
+        {
+            targetS = 255;
+        }
+        else if (targetS < 0)
+        {
+            targetS = 0;
+        }
+        setCurrentColorS((byte)targetS);
+        break;
+    case 3:
+        // val
         int targetV = getCurrentColorV() + (delta * V_DELTA_MULT);
         if (targetV > MAX_BRIGHTNESS)
         {
@@ -137,15 +173,13 @@ void valueDelta(int delta)
             targetV = MIN_BRIGHTNESS;
         }
         setCurrentColorV((byte)targetV);
-    }
-    else
-    {
-        // hue
-        int targetH = getCurrentColorH() + (delta * H_DELTA_MULT);
-        setCurrentColorH((byte)targetH);
+        break;
     }
 
-    updateLEDs();
+    if (state != 0)
+    {
+        updateLEDs();
+    }
 }
 
 void setCurrentColorH(byte value) { currentColor2 ? color2H = value : color1H = value; }
