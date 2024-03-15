@@ -17,7 +17,7 @@
 #define V_DELTA_MULT 2
 
 #define MIN_BRIGHTNESS 5
-#define MAX_BRIGHTNESS 255
+#define MAX_BRIGHTNESS 150
 
 void setupLEDs();
 void loopLEDs();
