@@ -1,5 +1,4 @@
 #include "leds.h"
-#include "input.h"
 
 CRGB leds[LEDS_COUNT];
 
