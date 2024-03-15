@@ -34,19 +34,19 @@
 class Button
 {
 private:
-    const int m_pin;
-    const bool m_invert;
-    const int m_bufferSize;
-    const int m_bufferLimit;
+    byte m_pin;
+    bool m_invert;
+    int m_bufferSize;
+    int m_bufferLimit;
 
     int m_buffer;
 
 public:
-    Button(int pin);
-    Button(int pin, int bufferSize);
-    Button(int pin, bool pullup, int bufferSize);
-    Button(int pin, bool pullup, bool invert);
-    Button(int pin, bool pullup, bool invert, int bufferSize);
+    Button(byte pin);
+    Button(byte pin, int bufferSize);
+    Button(byte pin, bool pullup, int bufferSize);
+    Button(byte pin, bool pullup, bool invert);
+    Button(byte pin, bool pullup, bool invert, int bufferSize);
     void loop();
     bool pressed();
 };

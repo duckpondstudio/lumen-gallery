@@ -1,6 +1,6 @@
 #include "button.h"
 
-Button::Button(int pin)
+Button::Button(byte pin)
     : m_pin{pin},
       m_invert{BUTTON_DEFAULT_INVERT},
       m_bufferSize{BUTTON_DEFAULT_BUFFER_SIZE},
@@ -9,7 +9,7 @@ Button::Button(int pin)
 {
     pinMode(pin, BUTTON_DEFAULT_PULLUP ? INPUT_PULLUP : INPUT);
 }
-Button::Button(int pin,
+Button::Button(byte pin,
                int bufferSize = BUTTON_DEFAULT_BUFFER_SIZE)
     : m_pin{pin},
       m_invert{BUTTON_DEFAULT_INVERT},
@@ -19,7 +19,7 @@ Button::Button(int pin,
 {
     pinMode(pin, BUTTON_DEFAULT_PULLUP ? INPUT_PULLUP : INPUT);
 }
-Button::Button(int pin,
+Button::Button(byte pin,
                bool pullup = BUTTON_DEFAULT_PULLUP,
                int bufferSize = BUTTON_DEFAULT_BUFFER_SIZE)
     : m_pin{pin},
@@ -30,7 +30,7 @@ Button::Button(int pin,
 {
     pinMode(pin, pullup ? INPUT_PULLUP : INPUT);
 }
-Button::Button(int pin,
+Button::Button(byte pin,
                bool pullup = BUTTON_DEFAULT_PULLUP,
                bool invert = BUTTON_DEFAULT_INVERT)
     : m_pin{pin},
@@ -41,7 +41,7 @@ Button::Button(int pin,
 {
     pinMode(pin, pullup ? INPUT_PULLUP : INPUT);
 }
-Button::Button(int pin,
+Button::Button(byte pin,
                bool pullup = BUTTON_DEFAULT_PULLUP,
                bool invert = BUTTON_DEFAULT_INVERT,
                int bufferSize = BUTTON_DEFAULT_BUFFER_SIZE)
