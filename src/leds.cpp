@@ -143,38 +143,48 @@ void valueDelta(int delta)
         }
     }
 
+    // ignore unassigned state 
+    if (state == 0)
+    {
+        return;
+    }
+
+    int target = 0;
+
     switch (state)
     {
     case 1:
         // hue
-        int targetH = getCurrentColorH() + (delta * H_DELTA_MULT);
-        setCurrentColorH((byte)targetH);
+        target = getCurrentColorH() + (delta * H_DELTA_MULT);
+        setCurrentColorH((byte)target);
         break;
+
     case 2:
         // sat
-        int targetS = getCurrentColorS() + (delta * S_DELTA_MULT);
-        if (targetS > 255)
+        target = getCurrentColorS() + (delta * S_DELTA_MULT);
+        if (target > 255)
         {
-            targetS = 255;
+            target = 255;
         }
-        else if (targetS < 0)
+        else if (target < 0)
         {
-            targetS = 0;
+            target = 0;
         }
-        setCurrentColorS((byte)targetS);
+        setCurrentColorS((byte)target);
         break;
+
     case 3:
         // val
-        int targetV = getCurrentColorV() + (delta * V_DELTA_MULT);
-        if (targetV > MAX_BRIGHTNESS)
+        target = getCurrentColorV() + (delta * V_DELTA_MULT);
+        if (target > MAX_BRIGHTNESS)
         {
-            targetV = MAX_BRIGHTNESS;
+            target = MAX_BRIGHTNESS;
         }
-        else if (targetV < MIN_BRIGHTNESS)
+        else if (target < MIN_BRIGHTNESS)
         {
-            targetV = MIN_BRIGHTNESS;
+            target = MIN_BRIGHTNESS;
         }
-        setCurrentColorV((byte)targetV);
+        setCurrentColorV((byte)target);
         break;
     }
 
