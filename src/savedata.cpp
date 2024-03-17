@@ -22,6 +22,19 @@ void setupSaveData()
 
 int getInt(int index)
 {
+    if (CHECK_INDEX_VALIDITY)
+    {
+        if (index < 0)
+        {
+            // too low, return 0
+            return 0;
+        }
+        else if (index >= SAVE_LENGTH_INT)
+        {
+            // too high, return 0
+            return 0;
+        }
+    }
     return data.intData[index];
 }
 void setInt(int index, int value, bool autoCommit = true)
@@ -30,6 +43,19 @@ void setInt(int index, int value, bool autoCommit = true)
 
 bool getBool(int index)
 {
+    if (CHECK_INDEX_VALIDITY)
+    {
+        if (index < 0)
+        {
+            // too low, return false
+            return false;
+        }
+        else if (index >= SAVE_LENGTH_BOOL)
+        {
+            // too high, return false
+            return false;
+        }
+    }
     return data.boolData[index];
 }
 void setBool(int index, bool value, bool autoCommit = true)
