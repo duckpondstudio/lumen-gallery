@@ -3,6 +3,8 @@
 
 #include <eewl.h>
 
+#define CHECK_INDEX_VALIDITY true
+
 #ifndef SAVE_LENGTH_BOOL
 #define SAVE_LENGTH_BOOL 2
 #endif
