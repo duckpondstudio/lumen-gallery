@@ -21,6 +21,13 @@
 #define MIN_BRIGHTNESS 5
 #define MAX_BRIGHTNESS 150
 
+#define DEFAULT_HUE_COLOR1 0 
+#define DEFAULT_SAT_COLOR1 255
+#define DEFAULT_VAL_COLOR1 100
+#define DEFAULT_HUE_COLOR2 160
+#define DEFAULT_SAT_COLOR2 255
+#define DEFAULT_VAL_COLOR2 100
+
 void setupLEDs();
 void loopLEDs();
 void updateLEDs();
