@@ -13,9 +13,9 @@ static byte color2V = MAX_BRIGHTNESS;
 bool currentColor2 = false;
 
 static int currentPattern = PATTERN_CT_DEFAULT;
-static bool lastToggledPattern = false;
 static bool patternInverted = false;
 
+static bool lastToggledPattern = false;
 static bool lastPressedEnc = false;
 
 void setupLEDs()
@@ -23,10 +23,19 @@ void setupLEDs()
     // FastLED.setBrightness(100);
     FastLED.addLeds<CHIPSET, PIN_LEDS, RGB_ORDER>(leds, LEDS_COUNT);
 
+    // load intial values
+    loadLEDData();
+
+    // initial LED assignment 
     updateLEDs();
 }
 
-byte test = 0;
+void loadLEDData() {
+
+}
+void saveLEDData() {
+
+}
 
 void loopLEDs()
 {

@@ -25,6 +25,9 @@ void setupLEDs();
 void loopLEDs();
 void updateLEDs();
 
+void loadLEDData();
+void saveLEDData();
+
 void doubleButtonPush(); 
 void encoderPush();
 
