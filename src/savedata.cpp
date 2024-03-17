@@ -129,6 +129,50 @@ void setBool(int index, bool value, bool force = false)
     }
 }
 
+byte getByte(int index)
+{
+    if (CHECK_INDEX_VALIDITY)
+    {
+        if (index < 0)
+        {
+            // too low, return false
+            return false;
+        }
+        else if (index >= SAVE_LENGTH_BYTE)
+        {
+            // too high, return false
+            return false;
+        }
+    }
+    return data.byteData[index];
+}
+void setByte(int index, byte value, bool force = false)
+{
+    if (CHECK_INDEX_VALIDITY)
+    {
+        if (index < 0)
+        {
+            // too low, return
+            return;
+        }
+        else if (index >= SAVE_LENGTH_BYTE)
+        {
+            // too high, return
+            return;
+        }
+    }
+
+    data.byteData[index] = value;
+
+    queuedSave = true;
+
+    if (force)
+    {
+        saveDelay = 0;
+        loopSaveData();
+    }
+}
+
 bool hasSaved()
 {
     return data.saved;
