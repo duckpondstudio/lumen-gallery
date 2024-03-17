@@ -1,5 +1,7 @@
 #include "savedata.h"
 
+#include "leds.h"
+
 saveData data;
 
 EEWL eewlData(data, BUFFER_LENGTH, BUFFER_START);
@@ -12,14 +14,20 @@ void setupSaveData()
     // begin EEWL object
     eewlData.begin();
 
+    if (FORCE_RESET) {
+        eewlData.fastFormat();
+    }
+
     // initial data get
     if (eewlData.get(data))
     {
         // data found
+        setDebugLight(true);
     }
     else
     {
         // data not found, first run
+        data.saved = false;
     }
 }
 

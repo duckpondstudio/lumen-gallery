@@ -6,6 +6,8 @@
 
 #define CHECK_INDEX_VALIDITY true
 
+#define FORCE_RESET false
+
 #ifndef SAVE_LENGTH_BOOL
 #define SAVE_LENGTH_BOOL 2
 #endif
