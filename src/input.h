@@ -11,7 +11,7 @@
 #include "leds.h"
 
 #define BTNS_DEBOUNCE 35
-#define BTNS_PULLUP true
+#define BTNS_PULLUP false
 #define BTNS_ACTIVE_LOW false
 
 
