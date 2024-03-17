@@ -41,50 +41,6 @@ void loopSaveData()
     }
 }
 
-int getInt(int index)
-{
-    if (CHECK_INDEX_VALIDITY)
-    {
-        if (index < 0)
-        {
-            // too low, return 0
-            return 0;
-        }
-        else if (index >= SAVE_LENGTH_INT)
-        {
-            // too high, return 0
-            return 0;
-        }
-    }
-    return data.intData[index];
-}
-void setInt(int index, int value, bool force = false)
-{
-    if (CHECK_INDEX_VALIDITY)
-    {
-        if (index < 0)
-        {
-            // too low, return
-            return;
-        }
-        else if (index >= SAVE_LENGTH_INT)
-        {
-            // too high, return
-            return;
-        }
-    }
-
-    data.intData[index] = value;
-
-    queuedSave = true;
-
-    if (force)
-    {
-        saveDelay = 0;
-        loopSaveData();
-    }
-}
-
 bool getBool(int index)
 {
     if (CHECK_INDEX_VALIDITY)
@@ -163,6 +119,50 @@ void setByte(int index, byte value, bool force = false)
     }
 
     data.byteData[index] = value;
+
+    queuedSave = true;
+
+    if (force)
+    {
+        saveDelay = 0;
+        loopSaveData();
+    }
+}
+
+int getInt(int index)
+{
+    if (CHECK_INDEX_VALIDITY)
+    {
+        if (index < 0)
+        {
+            // too low, return 0
+            return 0;
+        }
+        else if (index >= SAVE_LENGTH_INT)
+        {
+            // too high, return 0
+            return 0;
+        }
+    }
+    return data.intData[index];
+}
+void setInt(int index, int value, bool force = false)
+{
+    if (CHECK_INDEX_VALIDITY)
+    {
+        if (index < 0)
+        {
+            // too low, return
+            return;
+        }
+        else if (index >= SAVE_LENGTH_INT)
+        {
+            // too high, return
+            return;
+        }
+    }
+
+    data.intData[index] = value;
 
     queuedSave = true;
 
