@@ -49,6 +49,8 @@ struct saveData
 
 void setupSaveData();
 void loopSaveData();
+void queueSaveData();
+saveData *getSaveData();
 void commitSaveData();
 
 bool hasSaved();

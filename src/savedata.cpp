@@ -50,6 +50,14 @@ void loopSaveData()
     }
 }
 
+void queueSaveData() {
+    queuedSave = true;
+}
+
+saveData* getSaveData() {
+    return &data;
+}
+
 void commitSaveData()
 {
     data.saved = true;

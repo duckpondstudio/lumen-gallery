@@ -44,28 +44,30 @@ void loadLEDData()
     }
 
     // load values
-    color1H = getSaveByte(0);
-    color1S = getSaveByte(1);
-    color1V = getSaveByte(2);
-    color2H = getSaveByte(3);
-    color2S = getSaveByte(4);
-    color2V = getSaveByte(5);
-    currentPattern = getSaveInt(0);
-    patternInverted = getSaveBool(0);
-    currentColor2 = getSaveBool(1);
+    color1H = getSaveData()->color1H;
+    color1S = getSaveData()->color1S;
+    color1V = getSaveData()->color1V;
+    color2H = getSaveData()->color2H;
+    color2S = getSaveData()->color2S;
+    color2V = getSaveData()->color2V;
+    currentPattern = getSaveData()->currentPattern;
+    patternInverted = getSaveData()->patternInverted;
+    currentColor2 = getSaveData()->currentColor2;
 }
 void saveLEDData()
 {
     // save values
-    setSaveByte(0, color1H);
-    setSaveByte(1, color1S);
-    setSaveByte(2, color1V);
-    setSaveByte(3, color2H);
-    setSaveByte(4, color2S);
-    setSaveByte(5, color2V);
-    setSaveInt(0, currentPattern);
-    setSaveBool(0, patternInverted);
-    setSaveBool(1, currentColor2);
+    getSaveData()->color1H = color1H;
+    getSaveData()->color1S = color1S;
+    getSaveData()->color1V = color1V;
+    getSaveData()->color2H = color2H;
+    getSaveData()->color2S = color2S;
+    getSaveData()->color2V = color2V;
+    getSaveData()->currentPattern = currentPattern;
+    getSaveData()->patternInverted = patternInverted;
+    getSaveData()->currentColor2 = currentColor2;
+
+    queueSaveData();
 
     if (!savedThisSession)
     {
