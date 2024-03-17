@@ -21,6 +21,10 @@
 #define BUFFER_START 0x10
 #endif
 
+#ifndef SAVE_INTERVAL
+#define SAVE_INTERVAL 1000 // min time in ms between saves
+#endif
+
 // container for all local savedata
 struct saveData {
     // have values previously been saved 
@@ -32,12 +36,13 @@ struct saveData {
 };
 
 void setupSaveData();
+void loopSaveData();
 
 int getInt(int index);
-void setInt(int index, int value, bool autoCommit = true);
+void setInt(int index, int value, bool force = false);
 
 bool getBool(int index);
-void setBool(int index, bool value, bool autoCommit = true);
+void setBool(int index, bool value, bool force = false);
 
 bool hasSaved();
 

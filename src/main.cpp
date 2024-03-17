@@ -20,6 +20,7 @@ void loop()
 
     loopInput();
     loopLEDs();
+    loopSaveData();
 
     // loop delay
     delay(1);
