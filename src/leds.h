@@ -54,4 +54,6 @@ CRGB getColor1RGB();
 CHSV getColor2HSV();
 CRGB getColor2RGB();
 
+void setDebugLight(bool enabled);
+
 #endif

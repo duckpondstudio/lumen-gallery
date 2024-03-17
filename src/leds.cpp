@@ -18,6 +18,10 @@ static bool patternInverted = false;
 static bool lastToggledPattern = false;
 static bool lastPressedEnc = false;
 
+static bool savedThisSession = false;
+
+static bool debugLight = false;
+
 void setupLEDs()
 {
     // FastLED.setBrightness(100);
@@ -38,8 +42,8 @@ void loadLEDData()
         // use initial save data
         return;
     }
-    
-    // load values 
+
+    // load values
     color1H = getSaveByte(0);
     color1S = getSaveByte(1);
     color1V = getSaveByte(2);
@@ -52,7 +56,7 @@ void loadLEDData()
 }
 void saveLEDData()
 {
-    // save values 
+    // save values
     setSaveByte(0, color1H);
     setSaveByte(1, color1S);
     setSaveByte(2, color1V);
@@ -62,6 +66,13 @@ void saveLEDData()
     setSaveInt(0, currentPattern);
     setSaveBool(0, patternInverted);
     setSaveBool(1, currentColor2);
+
+    if (!savedThisSession)
+    {
+        savedThisSession = true;
+        // debugLight = true;
+        updateLEDs(false);
+    }
 }
 
 void loopLEDs()
@@ -134,9 +145,14 @@ void updateLEDs(bool autoSave)
         leds[i] = patternInverted ? blend(color2, color1, blendAmt) : blend(color1, color2, blendAmt);
     }
 
+    if (debugLight) {
+        leds[0] == CRGB(CHSV(0, 255, 172));
+    }
+
     FastLED.show();
 
-    if (autoSave) {
+    if (autoSave)
+    {
         saveLEDData();
     }
 }
@@ -267,4 +283,11 @@ CHSV getColor2HSV()
 CRGB getColor2RGB()
 {
     return CRGB(getColor2HSV());
+}
+
+void setDebugLight(bool enabled) {
+    if (enabled != debugLight) {
+        debugLight = enabled;
+        updateLEDs(false);
+    }
 }
