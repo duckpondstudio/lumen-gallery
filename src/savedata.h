@@ -14,7 +14,7 @@
 #define DEFAULT_VAL_COLOR2 100
 #define DEFAULT_PATTERN 1
 
-#define CHECK_INDEX_VALIDITY true
+#define CHECK_INDEX_VALIDITY false
 
 #define FORCE_RESET false
 
