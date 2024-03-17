@@ -120,7 +120,7 @@ void encoderPush()
     updateLEDs();
 }
 
-void updateLEDs(bool autoSave = true)
+void updateLEDs(bool autoSave)
 {
 
     // apply colors

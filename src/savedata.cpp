@@ -65,7 +65,7 @@ bool getSaveBool(int index)
     }
     return data.boolData[index];
 }
-void setSaveBool(int index, bool value, bool force = false)
+void setSaveBool(int index, bool value, bool force)
 {
     if (CHECK_INDEX_VALIDITY)
     {
@@ -109,7 +109,7 @@ byte getSaveByte(int index)
     }
     return data.byteData[index];
 }
-void setSaveByte(int index, byte value, bool force = false)
+void setSaveByte(int index, byte value, bool force)
 {
     if (CHECK_INDEX_VALIDITY)
     {
@@ -153,7 +153,7 @@ int getSaveInt(int index)
     }
     return data.intData[index];
 }
-void setSaveInt(int index, int value, bool force = false)
+void setSaveInt(int index, int value, bool force)
 {
     if (CHECK_INDEX_VALIDITY)
     {
