@@ -46,14 +46,14 @@ struct saveData
 void setupSaveData();
 void loopSaveData();
 
-bool getBool(int index);
-void setBool(int index, bool value, bool force = false);
+bool getSaveBool(int index);
+void setSaveBool(int index, bool value, bool force = false);
 
-byte getByte(int index);
-void setByte(int index, byte value, bool force = false);
+byte getSaveByte(int index);
+void setSaveByte(int index, byte value, bool force = false);
 
-int getInt(int index);
-void setInt(int index, int value, bool force = false);
+int getSaveInt(int index);
+void setSaveInt(int index, int value, bool force = false);
 
 bool hasSaved();
 

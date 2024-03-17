@@ -41,7 +41,7 @@ void loopSaveData()
     }
 }
 
-bool getBool(int index)
+bool getSaveBool(int index)
 {
     if (CHECK_INDEX_VALIDITY)
     {
@@ -58,7 +58,7 @@ bool getBool(int index)
     }
     return data.boolData[index];
 }
-void setBool(int index, bool value, bool force = false)
+void setSaveBool(int index, bool value, bool force = false)
 {
     if (CHECK_INDEX_VALIDITY)
     {
@@ -85,7 +85,7 @@ void setBool(int index, bool value, bool force = false)
     }
 }
 
-byte getByte(int index)
+byte getSaveByte(int index)
 {
     if (CHECK_INDEX_VALIDITY)
     {
@@ -102,7 +102,7 @@ byte getByte(int index)
     }
     return data.byteData[index];
 }
-void setByte(int index, byte value, bool force = false)
+void setSaveByte(int index, byte value, bool force = false)
 {
     if (CHECK_INDEX_VALIDITY)
     {
@@ -129,7 +129,7 @@ void setByte(int index, byte value, bool force = false)
     }
 }
 
-int getInt(int index)
+int getSaveInt(int index)
 {
     if (CHECK_INDEX_VALIDITY)
     {
@@ -146,7 +146,7 @@ int getInt(int index)
     }
     return data.intData[index];
 }
-void setInt(int index, int value, bool force = false)
+void setSaveInt(int index, int value, bool force = false)
 {
     if (CHECK_INDEX_VALIDITY)
     {
