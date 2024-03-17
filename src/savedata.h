@@ -45,6 +45,7 @@ struct saveData
 
 void setupSaveData();
 void loopSaveData();
+void commitSaveData();
 
 bool getSaveBool(int index);
 void setSaveBool(int index, bool value, bool force = false);

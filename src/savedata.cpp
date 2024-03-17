@@ -25,20 +25,27 @@ void setupSaveData()
 
 void loopSaveData()
 {
-    // decrement save delay 
-    if (saveDelay > 0) {
+    // decrement save delay
+    if (saveDelay > 0)
+    {
         saveDelay--;
     }
-    // apply queued save state 
+    // apply queued save state
     if (queuedSave)
     {
-        if (saveDelay <= 0) {
-            data.saved = true;
-            eewlData.put(data);
+        if (saveDelay <= 0)
+        {
+            commitSaveData();
             queuedSave = false;
             saveDelay = SAVE_INTERVAL;
         }
     }
+}
+
+void commitSaveData()
+{
+    data.saved = true;
+    eewlData.put(data);
 }
 
 bool getSaveBool(int index)
