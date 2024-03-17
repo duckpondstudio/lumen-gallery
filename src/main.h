@@ -8,7 +8,7 @@
 #include "leds.h"
 #include "savedata.h"
 
-#define INITIAL_DELAY 250
+#define INITIAL_DELAY 100
 
 
 void setupLEDs();
