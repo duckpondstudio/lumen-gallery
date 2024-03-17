@@ -3,25 +3,15 @@
 
 #include <Arduino.h>
 #include <eewl.h>
+#include "leds.h"
+#include "ledarrays.h"
 
 #define CHECK_INDEX_VALIDITY true
 
 #define FORCE_RESET false
 
-#ifndef SAVE_LENGTH_BOOL
-#define SAVE_LENGTH_BOOL 2
-#endif
-
-#ifndef SAVE_LENGTH_BYTE
-#define SAVE_LENGTH_BYTE 6
-#endif
-
-#ifndef SAVE_LENGTH_INT
-#define SAVE_LENGTH_INT 1
-#endif
-
 #ifndef BUFFER_LENGTH
-#define BUFFER_LENGTH SAVE_LENGTH_BOOL + SAVE_LENGTH_BYTE + (SAVE_LENGTH_INT * 2) + 1
+#define BUFFER_LENGTH 12
 #endif
 
 #ifndef BUFFER_START
@@ -36,27 +26,21 @@
 struct saveData
 {
     // have values previously been saved
-    bool saved;
-    // array for all bools storage
-    bool boolData[SAVE_LENGTH_BOOL];
-    // array for all bytes storage
-    bool byteData[SAVE_LENGTH_BYTE];
-    // array for all ints storage
-    int intData[SAVE_LENGTH_INT];
+    bool saved = false;
+    byte color1H = DEFAULT_HUE_COLOR1;
+    byte color1S = DEFAULT_SAT_COLOR1;
+    byte color1V = DEFAULT_VAL_COLOR1;
+    byte color2H = DEFAULT_HUE_COLOR2;
+    byte color2S = DEFAULT_SAT_COLOR2;
+    byte color2V = DEFAULT_VAL_COLOR2;
+    int currentPattern = PATTERN_CT_DEFAULT;
+    bool patternInverted = false;
+    bool currentColor2 = false;
 };
 
 void setupSaveData();
 void loopSaveData();
 void commitSaveData();
-
-bool getSaveBool(int index);
-void setSaveBool(int index, bool value, bool force = false);
-
-byte getSaveByte(int index);
-void setSaveByte(int index, byte value, bool force = false);
-
-int getSaveInt(int index);
-void setSaveInt(int index, int value, bool force = false);
 
 bool hasSaved();
 
