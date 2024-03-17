@@ -2,13 +2,13 @@
 
 CRGB leds[LEDS_COUNT];
 
-static byte color1H = 0;
-static byte color1S = 255;
-static byte color1V = MAX_BRIGHTNESS;
+static byte color1H = DEFAULT_HUE_COLOR1;
+static byte color1S = DEFAULT_SAT_COLOR1;
+static byte color1V = DEFAULT_VAL_COLOR1;
 
-static byte color2H = 160;
-static byte color2S = 255;
-static byte color2V = MAX_BRIGHTNESS;
+static byte color2H = DEFAULT_HUE_COLOR2;
+static byte color2S = DEFAULT_SAT_COLOR2;
+static byte color2V = DEFAULT_VAL_COLOR2;
 
 bool currentColor2 = false;
 
@@ -26,15 +26,21 @@ void setupLEDs()
     // load intial values
     loadLEDData();
 
-    // initial LED assignment 
+    // initial LED assignment
     updateLEDs();
 }
 
-void loadLEDData() {
+void loadLEDData()
+{
 
+    if (!hasSaved())
+    {
+        // use initial save data 
+        return;
+    }
 }
-void saveLEDData() {
-
+void saveLEDData()
+{
 }
 
 void loopLEDs()
@@ -73,7 +79,7 @@ void loopLEDs()
     }
 }
 
-// both buttons have been pressed 
+// both buttons have been pressed
 void doubleButtonPush()
 {
     currentPattern++;
@@ -84,12 +90,12 @@ void doubleButtonPush()
     updateLEDs();
 }
 
-// encoder button has been pressed 
+// encoder button has been pressed
 void encoderPush()
 {
     // pressed encoder down
     // patternInverted = !patternInverted; // change inversion pattern
-    currentColor2 = !currentColor2;// switch current color 
+    currentColor2 = !currentColor2; // switch current color
     updateLEDs();
 }
 
