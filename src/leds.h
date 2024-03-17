@@ -25,6 +25,9 @@ void setupLEDs();
 void loopLEDs();
 void updateLEDs();
 
+void doubleButtonPush(); 
+void encoderPush();
+
 void valueDelta(int delta);
 
 void setCurrentColorH(byte value);

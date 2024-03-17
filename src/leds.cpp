@@ -47,12 +47,7 @@ void loopLEDs()
         {
             // todo: integrate timer delay
             lastToggledPattern = true;
-            currentPattern++;
-            if (currentPattern > PATTERN_CT_MAX)
-            {
-                currentPattern = PATTERN_CT_MIN;
-            }
-            updateLEDs();
+            doubleButtonPush();
         }
     }
 
@@ -63,11 +58,30 @@ void loopLEDs()
         lastPressedEnc = pressedEnc;
         if (pressedEnc)
         {
-            // pressed encoder down, switch colors
-            patternInverted = !patternInverted;
-            updateLEDs();
+            // pressed encoder down
+            encoderPush();
         }
     }
+}
+
+// both buttons have been pressed 
+void doubleButtonPush()
+{
+    currentPattern++;
+    if (currentPattern > PATTERN_CT_MAX)
+    {
+        currentPattern = PATTERN_CT_MIN;
+    }
+    updateLEDs();
+}
+
+// encoder button has been pressed 
+void encoderPush()
+{
+    // pressed encoder down
+    // patternInverted = !patternInverted; // change inversion pattern
+    currentColor2 = !currentColor2;// switch current color 
+    updateLEDs();
 }
 
 void updateLEDs()
