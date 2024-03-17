@@ -10,7 +10,7 @@ static byte color2H = DEFAULT_HUE_COLOR2;
 static byte color2S = DEFAULT_SAT_COLOR2;
 static byte color2V = DEFAULT_VAL_COLOR2;
 
-bool currentColor2 = false;
+static bool currentColor2 = false;
 
 static int currentPattern = PATTERN_CT_DEFAULT;
 static bool patternInverted = false;
@@ -35,12 +35,33 @@ void loadLEDData()
 
     if (!hasSaved())
     {
-        // use initial save data 
+        // use initial save data
         return;
     }
+    
+    // load values 
+    color1H = getSaveByte(0);
+    color1S = getSaveByte(1);
+    color1V = getSaveByte(2);
+    color2H = getSaveByte(3);
+    color2S = getSaveByte(4);
+    color2V = getSaveByte(5);
+    currentPattern = getSaveInt(0);
+    patternInverted = getSaveBool(0);
+    currentColor2 = getSaveBool(1);
 }
 void saveLEDData()
 {
+    // save values 
+    setSaveByte(0, color1H);
+    setSaveByte(1, color1S);
+    setSaveByte(2, color1V);
+    setSaveByte(3, color2H);
+    setSaveByte(4, color2S);
+    setSaveByte(5, color2V);
+    setSaveInt(0, currentPattern);
+    setSaveBool(0, patternInverted);
+    setSaveBool(1, currentColor2);
 }
 
 void loopLEDs()
