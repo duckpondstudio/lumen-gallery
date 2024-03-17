@@ -33,6 +33,7 @@ void loopSaveData()
     if (queuedSave)
     {
         if (saveDelay <= 0) {
+            data.saved = true;
             eewlData.put(data);
             queuedSave = false;
             saveDelay = SAVE_INTERVAL;
