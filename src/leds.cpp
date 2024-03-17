@@ -27,7 +27,7 @@ void setupLEDs()
     loadLEDData();
 
     // initial LED assignment
-    updateLEDs();
+    updateLEDs(false);
 }
 
 void loadLEDData()
@@ -120,7 +120,7 @@ void encoderPush()
     updateLEDs();
 }
 
-void updateLEDs()
+void updateLEDs(bool autoSave = true)
 {
 
     // apply colors
@@ -135,6 +135,10 @@ void updateLEDs()
     }
 
     FastLED.show();
+
+    if (autoSave) {
+        saveLEDData();
+    }
 }
 
 // a value delta (typically +/- some small number) has been received from the encoder

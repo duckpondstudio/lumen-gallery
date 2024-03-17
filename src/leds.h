@@ -30,7 +30,7 @@
 
 void setupLEDs();
 void loopLEDs();
-void updateLEDs();
+void updateLEDs(bool autoSave = true);
 
 void loadLEDData();
 void saveLEDData();
