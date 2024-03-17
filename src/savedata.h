@@ -6,6 +6,14 @@
 #include "leds.h"
 #include "ledarrays.h"
 
+#define DEFAULT_HUE_COLOR1 0 
+#define DEFAULT_SAT_COLOR1 255
+#define DEFAULT_VAL_COLOR1 100
+#define DEFAULT_HUE_COLOR2 160
+#define DEFAULT_SAT_COLOR2 255
+#define DEFAULT_VAL_COLOR2 100
+#define DEFAULT_PATTERN 1
+
 #define CHECK_INDEX_VALIDITY true
 
 #define FORCE_RESET false
@@ -22,6 +30,7 @@
 #define SAVE_INTERVAL 1000 // min time in ms between saves
 #endif
 
+
 // container for all local savedata
 struct saveData
 {
@@ -33,7 +42,7 @@ struct saveData
     byte color2H = DEFAULT_HUE_COLOR2;
     byte color2S = DEFAULT_SAT_COLOR2;
     byte color2V = DEFAULT_VAL_COLOR2;
-    int currentPattern = PATTERN_CT_DEFAULT;
+    int currentPattern = DEFAULT_PATTERN;
     bool patternInverted = false;
     bool currentColor2 = false;
 };

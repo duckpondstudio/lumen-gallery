@@ -12,7 +12,7 @@ static byte color2V = DEFAULT_VAL_COLOR2;
 
 static bool currentColor2 = false;
 
-static int currentPattern = PATTERN_CT_DEFAULT;
+static int currentPattern = DEFAULT_PATTERN;
 static bool patternInverted = false;
 
 static bool lastToggledPattern = false;
