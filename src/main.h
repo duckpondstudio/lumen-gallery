@@ -11,7 +11,7 @@
 #define INITIAL_DELAY 100
 
 
-void setupLEDs();
-void loopLEDs();
+void setup();
+void loop();
 
 #endif
