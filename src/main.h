@@ -3,6 +3,7 @@
 
 #include <Arduino.h>
 
+#include "debug.h"
 #include "pindef.h"
 #include "input.h"
 #include "leds.h"

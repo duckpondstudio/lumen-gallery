@@ -6,6 +6,17 @@ void setup()
 {
     delay(INITIAL_DELAY);
 
+    if (DEBUG_ENABLED)
+    {
+        setupDebug();
+        if (DEBUG_ONLY)
+        {
+            setupComplete = true;
+            return;
+        }
+        delay(SETUP_STEP_DELAY);
+    }
+
     setupSaveData();
 
     delay(SETUP_STEP_DELAY);
@@ -13,7 +24,7 @@ void setup()
     setupInput();
 
     delay(SETUP_STEP_DELAY);
-    
+
     setupLEDs();
 
     setupComplete = true;
@@ -23,6 +34,13 @@ void loop()
 {
     if (!setupComplete)
         return;
+
+    if (DEBUG_ENABLED)
+    {
+        loopDebug();
+        if (DEBUG_ONLY)
+            return;
+    }
 
     loopInput();
     loopLEDs();
