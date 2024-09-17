@@ -7,7 +7,13 @@ void setup()
     delay(INITIAL_DELAY);
 
     setupSaveData();
+
+    delay(SETUP_STEP_DELAY);
+
     setupInput();
+
+    delay(SETUP_STEP_DELAY);
+    
     setupLEDs();
 
     setupComplete = true;

@@ -9,6 +9,7 @@
 #include "savedata.h"
 
 #define INITIAL_DELAY 100
+#define SETUP_STEP_DELAY 10
 
 
 void setup();
