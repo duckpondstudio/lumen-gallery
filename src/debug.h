@@ -20,11 +20,17 @@
 // 3 = 8/9/10/0, 
 // 4 = 3/7/2/8/5, 
 // 0/else = none 
-#define DEBUG_MULTIPLE_PINS_SET 2 
+#define DEBUG_MULTI_PINS_SET 4
+#define DEBUG_MULTI_BLINK_CYCLE true // cycle thru DEBUG_MULTI_PINS_SET with numbered blinks 
 #define DEBUG_BLINK_LED false     // blink a single LED
 #define DEBUG_SINGLE_LED false    // display a single LED
 
 void setupDebug();
 void loopDebug();
+
+void cycleBlinkLEDs();
+void clearLEDs();
+CRGB *getBlinkCycleLEDs();
+bool debugMultiPinsValid();
 
 #endif
