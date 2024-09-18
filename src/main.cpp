@@ -39,7 +39,10 @@ void loop()
     {
         loopDebug();
         if (DEBUG_ONLY)
+        {
+            delay(1);
             return;
+        }
     }
 
     // loopInput();
