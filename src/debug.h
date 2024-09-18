@@ -2,9 +2,27 @@
 #define DEBUG_H
 
 #include <Arduino.h>
+#include <FastLED.h>
 
-#define DEBUG_ENABLED true // use debug systems / tools 
-#define DEBUG_ONLY true // in main.h, if DEBUG_ENABLED, exclude setup and loop for non-debug functions 
+#include "pindef.h"
+#include "leds.h"
+
+#define DEBUG_ENABLED true // use debug systems / tools
+#define DEBUG_ONLY true    // in main.h, if DEBUG_ENABLED, exclude setup and loop for non-debug functions
+
+#define DEBUG_LED_CHIPSET WS2812B // chipset to use for debugging. Also see CHIPSET in leds.h
+#define DEBUG_LED_RGB_ORDER GRB   // RGB ordering to use for debugging. Also see RGB_ORDER in leds.h
+
+
+// for debugging multiple LED pins with diff colours. 
+// 1 = pins0/1/2/3, 
+// 2 = 4/5/6/7, 
+// 3 = 8/9/10/0, 
+// 4 = 3/7/2/8/5, 
+// 0/else = none 
+#define DEBUG_MULTIPLE_PINS_SET 2 
+#define DEBUG_BLINK_LED false     // blink a single LED
+#define DEBUG_SINGLE_LED false    // display a single LED
 
 void setupDebug();
 void loopDebug();
