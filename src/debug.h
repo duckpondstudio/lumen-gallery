@@ -13,17 +13,19 @@
 #define DEBUG_LED_CHIPSET WS2812B // chipset to use for debugging. Also see CHIPSET in leds.h
 #define DEBUG_LED_RGB_ORDER GRB   // RGB ordering to use for debugging. Also see RGB_ORDER in leds.h
 
+// for debugging multiple LED pins with diff colours.
+// 1 = pins0/1/2/3,
+// 2 = 4/5/6/7,
+// 3 = 8/9/10/0,
+// 4 = 3/7/2/8,
+// 0/else = none
+#define DEBUG_MULTI_PINS_SET 0
+#define DEBUG_MULTI_BLINK_CYCLE false // cycle thru DEBUG_MULTI_PINS_SET with numbered blinks
 
-// for debugging multiple LED pins with diff colours. 
-// 1 = pins0/1/2/3, 
-// 2 = 4/5/6/7, 
-// 3 = 8/9/10/0, 
-// 4 = 3/7/2/8/5, 
-// 0/else = none 
-#define DEBUG_MULTI_PINS_SET 4
-#define DEBUG_MULTI_BLINK_CYCLE true // cycle thru DEBUG_MULTI_PINS_SET with numbered blinks 
-#define DEBUG_BLINK_LED false     // blink a single LED
-#define DEBUG_SINGLE_LED false    // display a single LED
+#define DEBUG_SINGLE_LED true   // display a single LED
+#define DEBUG_BLINK_LED false   // blink a single LED
+#define DEBUG_LED_DATA_PIN 7    // data pin to use for a single LED
+#define DEBUG_LEDS_TEST_COUNT 3 // how many LEDs on the strip to test (default 1)
 
 void setupDebug();
 void loopDebug();
