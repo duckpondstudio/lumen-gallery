@@ -27,6 +27,9 @@
 #define DEBUG_LED_DATA_PIN 7    // data pin to use for a single LED
 #define DEBUG_LEDS_TEST_COUNT 3 // how many LEDs on the strip to test (default 1)
 
+#define DEBUG_HILOW_OUT true
+#define DEBUG_HILOW_PIN 5
+
 void setupDebug();
 void loopDebug();
 

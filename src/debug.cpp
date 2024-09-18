@@ -16,6 +16,7 @@ int cycleTarget = 1;     // target for which debugLEDs array to return
 int cycleIterations = 0; // counter for num times cycle to blink
 
 bool blinkOn = false; // for basic blink, is LED currently ON or OFF
+bool hiLow = false;   // is hilow output high (t) or low (f)
 
 void setupDebug()
 {
@@ -81,6 +82,11 @@ void setupDebug()
         }
         FastLED.show();
     }
+
+    if (DEBUG_HILOW_OUT)
+    {
+        pinMode(DEBUG_HILOW_PIN, OUTPUT);
+    }
 }
 
 void loopDebug()
@@ -93,7 +99,7 @@ void loopDebug()
         cycleBlinkLEDs();
     }
 
-    if (DEBUG_BLINK_LED)
+    if (DEBUG_BLINK_LED || DEBUG_HILOW_OUT)
     {
 
         bool oneSecondTick = false;
@@ -105,12 +111,21 @@ void loopDebug()
         }
         if (oneSecondTick)
         {
-            blinkOn = !blinkOn;
-            for (int i = 0; i < DEBUG_LEDS_TEST_COUNT; i++)
+            if (DEBUG_HILOW_OUT)
             {
-                debugLEDs[0] = blinkOn ? CRGB::Cyan : CRGB::Black;
+                hiLow = !hiLow;
+                digitalWrite(DEBUG_HILOW_PIN, hiLow ? HIGH : LOW);
             }
-            FastLED.show();
+
+            if (DEBUG_BLINK_LED)
+            {
+                blinkOn = !blinkOn;
+                for (int i = 0; i < DEBUG_LEDS_TEST_COUNT; i++)
+                {
+                    debugLEDs[0] = blinkOn ? CRGB::Cyan : CRGB::Black;
+                }
+                FastLED.show();
+            }
         }
     }
 }
