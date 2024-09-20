@@ -30,6 +30,10 @@ void setupLEDs()
     // load intial values
     loadLEDData();
 
+    // clear buffer + push to strip (fixes lingering bugs in data line)
+    // per: https://www.reddit.com/r/FastLED/comments/dd950a/clear_turn_off_all_leds_before_void_loop_starts/
+    FastLED.clear(true);
+
     // initial LED assignment
     updateLEDs(false);
 }
