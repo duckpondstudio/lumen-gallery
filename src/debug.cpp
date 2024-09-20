@@ -15,6 +15,10 @@ int cycleStep = 0;       // current step in cycle logic flow
 int cycleTarget = 1;     // target for which debugLEDs array to return
 int cycleIterations = 0; // counter for num times cycle to blink
 
+int rainbowOffset = 0;
+int rainbowTimer = 0;
+int rainbowInterval = 20;
+
 bool blinkOn = false; // for basic blink, is LED currently ON or OFF
 bool hiLow = false;   // is hilow output high (t) or low (f)
 
@@ -70,15 +74,23 @@ void setupDebug()
         }
     }
 
-    if (DEBUG_SINGLE_LED || DEBUG_BLINK_LED)
+    if (DEBUG_BASIC_LED || DEBUG_BLINK_LED || DEBUG_LEDS_RAINBOW)
     {
         // debug a single LED for display or blinking
         FastLED.addLeds<DEBUG_LED_CHIPSET, DEBUG_LED_DATA_PIN, DEBUG_LED_RGB_ORDER>(debugLEDs, DEBUG_LEDS_TEST_COUNT);
         if (DEBUG_BLINK_LED)
             blinkOn = true;
+
         for (int i = 0; i < DEBUG_LEDS_TEST_COUNT; i++)
         {
-            debugLEDs[i] = CRGB::Cyan;
+            if (DEBUG_LEDS_RAINBOW && DEBUG_LEDS_TEST_COUNT > 1)
+            {
+                debugLEDs[i] = getRainbowColor(i, DEBUG_LEDS_TEST_COUNT);
+            }
+            else
+            {
+                debugLEDs[i] = CRGB::Cyan;
+            }
         }
         FastLED.show();
     }
@@ -99,10 +111,10 @@ void loopDebug()
         cycleBlinkLEDs();
     }
 
+    bool oneSecondTick = false; // track the 1s timer
     if (DEBUG_BLINK_LED || DEBUG_HILOW_OUT)
     {
 
-        bool oneSecondTick = false;
         second++;
         if (second >= 1000)
         {
@@ -120,12 +132,55 @@ void loopDebug()
             if (DEBUG_BLINK_LED)
             {
                 blinkOn = !blinkOn;
-                for (int i = 0; i < DEBUG_LEDS_TEST_COUNT; i++)
-                {
-                    debugLEDs[0] = blinkOn ? CRGB::Cyan : CRGB::Black;
-                }
-                FastLED.show();
+                // if cycling rainbow LEDs, that code will actually turn the LEDs on / off
+                if (!(DEBUG_LEDS_RAINBOW && DEBUG_RAINBOW_CYCLE))
+                    for (int i = 0; i < DEBUG_LEDS_TEST_COUNT; i++)
+                    {
+                        {
+                            debugLEDs[0] = blinkOn ? CRGB::Cyan : CRGB::Black;
+                        }
+                        FastLED.show();
+                    }
             }
+            else
+            {
+                // do not use 1s tick beyond here unless blinking
+                oneSecondTick = false;
+            }
+        }
+    }
+
+    if (DEBUG_LEDS_RAINBOW && DEBUG_RAINBOW_CYCLE)
+    {
+        rainbowTimer++;
+        bool incrementingRainbowTimer = rainbowTimer >= rainbowInterval;
+        // either the rainbow timer has incremented, or a blink tick has passed
+        if (incrementingRainbowTimer || oneSecondTick)
+        {
+            if (incrementingRainbowTimer)
+            {
+                rainbowOffset++;
+                if (rainbowOffset > 255)
+                {
+                    rainbowOffset = 0;
+                }
+                rainbowTimer = 0;
+            }
+            for (int i = 0; i < DEBUG_LEDS_TEST_COUNT; i++)
+            {
+                if (DEBUG_BLINK_LED)
+                {
+                    if (blinkOn)
+                        debugLEDs[i] = getRainbowColor(i, DEBUG_LEDS_TEST_COUNT, rainbowOffset);
+                    else
+                        debugLEDs[i] = CRGB::Black;
+                }
+                else
+                {
+                    debugLEDs[i] = getRainbowColor(i, DEBUG_LEDS_TEST_COUNT, rainbowOffset);
+                }
+            }
+            FastLED.show();
         }
     }
 }
@@ -215,6 +270,13 @@ CRGB *getBlinkCycleLEDs()
     }
     return debugLEDs;
 }
+
+CHSV getRainbowColor(int current, int max, int offset = 0)
+{
+    int value = (constrain(current, 0, 255) + offset) % 255;
+    return CHSV(value, 255, 255);
+}
+
 void clearLEDs()
 {
     for (int i = 0; i < DEBUG_LEDS_TEST_COUNT; i++)
