@@ -17,15 +17,15 @@ void setup()
         delay(SETUP_STEP_DELAY);
     }
 
-    // setupSaveData();
+    setupSaveData();
 
-    // delay(SETUP_STEP_DELAY);
+    delay(SETUP_STEP_DELAY);
 
-    // setupInput();
+    setupInput();
 
-    // delay(SETUP_STEP_DELAY);
+    delay(SETUP_STEP_DELAY);
 
-    // setupLEDs();
+    setupLEDs();
 
     setupComplete = true;
 }
@@ -45,9 +45,9 @@ void loop()
         }
     }
 
-    // loopInput();
-    // loopLEDs();
-    // loopSaveData();
+    loopInput();
+    loopLEDs();
+    loopSaveData();
 
     // loop delay
     delay(1);

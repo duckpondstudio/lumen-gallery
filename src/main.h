@@ -5,9 +5,9 @@
 
 #include "debug.h"
 #include "pindef.h"
-// #include "input.h"
-// #include "leds.h"
-// #include "savedata.h"
+#include "input.h"
+#include "leds.h"
+#include "savedata.h"
 
 #define INITIAL_DELAY 100
 #define SETUP_STEP_DELAY 10
