@@ -63,7 +63,8 @@ void setupDebug()
         }
 
         // clear buffer + push to strip (fixes lingering bugs in data line)
-        FastLED.clear(true);
+        FastLED.clearData();
+        FastLED.show();
 
         if (!DEBUG_MULTI_BLINK_CYCLE)
         {

@@ -32,7 +32,15 @@ void setupLEDs()
 
     // clear buffer + push to strip (fixes lingering bugs in data line)
     // per: https://www.reddit.com/r/FastLED/comments/dd950a/clear_turn_off_all_leds_before_void_loop_starts/
-    FastLED.clear(true);
+    // FastLED.clear(true);
+    // NOTE: FastLED.clear(true) seems to add add'l size to the build, causing it to fail. 
+    //       Even tho the below is functionally identical, this does NOT break the build.
+    for (int i = 0; i < LEDS_COUNT; i++)
+    {
+        leds[i] = CRGB::Black;
+    }
+    FastLED.show();
+    FastLED.clearData();
 
     // initial LED assignment
     updateLEDs(false);
