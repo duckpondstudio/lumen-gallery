@@ -12,14 +12,16 @@
 #define CHIPSET WS2812B
 #define RGB_ORDER GRB
 
-#define LEDS_COUNT 40
+#define LEDS_COUNT 36 // number of LEDs
 
 #define H_DELTA_MULT 2
 #define S_DELTA_MULT 5
 #define V_DELTA_MULT 2
 
-#define MIN_BRIGHTNESS 5
-#define MAX_BRIGHTNESS 150
+#define MAIN_BRIGHTNESS 100 // base brightness to set FastLED to 
+
+#define MIN_BRIGHTNESS 5 // min value of V in LED HSV calc 
+#define MAX_BRIGHTNESS 150 // max value of V in LED HSV calc 
 
 
 void setupLEDs();
