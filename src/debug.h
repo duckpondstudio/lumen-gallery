@@ -29,6 +29,8 @@
 #define DEBUG_LEDS_RAINBOW true  // if true, assigns all LEDs on the strip through HSV 0-255
 #define DEBUG_RAINBOW_CYCLE true // if true, and if debugging rainbow, makes the rainbow animate
 
+#define DEBUG_LED_BRIGHTNESS 63 // if >= 0 && < 256, sets debug LED brightness to this value on setup
+
 #define DEBUG_HILOW_OUT true
 #define DEBUG_HILOW_PIN 5
 
