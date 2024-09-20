@@ -73,7 +73,7 @@ void setupDebug()
     if (DEBUG_SINGLE_LED || DEBUG_BLINK_LED)
     {
         // debug a single LED for display or blinking
-        FastLED.addLeds<DEBUG_LED_CHIPSET, DEBUG_LED_DATA_PIN, DEBUG_LED_RGB_ORDER>(debugLEDs, 1);
+        FastLED.addLeds<DEBUG_LED_CHIPSET, DEBUG_LED_DATA_PIN, DEBUG_LED_RGB_ORDER>(debugLEDs, DEBUG_LEDS_TEST_COUNT);
         if (DEBUG_BLINK_LED)
             blinkOn = true;
         for (int i = 0; i < DEBUG_LEDS_TEST_COUNT; i++)
