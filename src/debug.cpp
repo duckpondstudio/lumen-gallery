@@ -61,6 +61,10 @@ void setupDebug()
             FastLED.addLeds<DEBUG_LED_CHIPSET, 8, DEBUG_LED_RGB_ORDER>(debugLEDsD, DEBUG_LEDS_TEST_COUNT);
             break;
         }
+
+        // clear buffer + push to strip (fixes lingering bugs in data line)
+        FastLED.clear(true);
+
         if (!DEBUG_MULTI_BLINK_CYCLE)
         {
             for (int i = 0; i < DEBUG_LEDS_TEST_COUNT; i++)
@@ -74,6 +78,7 @@ void setupDebug()
         }
     }
 
+    // may interfere with multipins valid test 
     if (DEBUG_BASIC_LED || DEBUG_BLINK_LED || DEBUG_LEDS_RAINBOW)
     {
         // debug a single LED for display or blinking
@@ -92,6 +97,10 @@ void setupDebug()
                 debugLEDs[i] = CRGB::Cyan;
             }
         }
+
+        // clear buffer + push to strip (fixes lingering bugs in data line)
+        FastLED.clear(true);
+
         FastLED.show();
     }
 

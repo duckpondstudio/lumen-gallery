@@ -30,6 +30,9 @@ void setupLEDs()
     // load intial values
     loadLEDData();
 
+    // clear buffer + push to strip (fixes lingering bugs in data line)
+    FastLED.clear(true);
+
     // initial LED assignment
     updateLEDs(false);
 }
