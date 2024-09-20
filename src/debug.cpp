@@ -27,6 +27,12 @@ void setupDebug()
     if (!DEBUG_ENABLED)
         return;
 
+    // set brightness
+    if (DEBUG_LED_BRIGHTNESS >= 0 && DEBUG_LED_BRIGHTNESS < 256)
+    {
+        FastLED.setBrightness(DEBUG_LED_BRIGHTNESS);
+    }
+
     if (debugMultiPinsValid())
     {
         // setup multiple pins
@@ -62,11 +68,6 @@ void setupDebug()
             break;
         }
 
-        // set brightness 
-        if (DEBUG_LED_BRIGHTNESS >= 0 && DEBUG_LED_BRIGHTNESS < 256) {
-            FastLED.setBrightness(DEBUG_LED_BRIGHTNESS);
-        }
-
         // clear buffer + push to strip (fixes lingering bugs in data line)
         FastLED.clearData();
         FastLED.show();
@@ -84,16 +85,11 @@ void setupDebug()
         }
     }
 
-    // may interfere with multipins valid test 
+    // may interfere with multipins valid test
     if (DEBUG_BASIC_LED || DEBUG_BLINK_LED || DEBUG_LEDS_RAINBOW)
     {
         // debug a single LED for display or blinking
         FastLED.addLeds<DEBUG_LED_CHIPSET, DEBUG_LED_DATA_PIN, DEBUG_LED_RGB_ORDER>(debugLEDs, DEBUG_LEDS_TEST_COUNT);
-
-        // set brightness 
-        if (DEBUG_LED_BRIGHTNESS >= 0 && DEBUG_LED_BRIGHTNESS < 256) {
-            FastLED.setBrightness(DEBUG_LED_BRIGHTNESS);
-        }
 
         if (DEBUG_BLINK_LED)
             blinkOn = true;
