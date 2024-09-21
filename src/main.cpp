@@ -17,15 +17,24 @@ void setup()
         delay(SETUP_STEP_DELAY);
     }
 
-    setupSaveData();
+    if (ENABLE_SAVEDATA)
+    {
+        setupSaveData();
 
-    delay(SETUP_STEP_DELAY);
+        delay(SETUP_STEP_DELAY);
+    }
 
-    setupInput();
+    if (ENABLE_INPUT)
+    {
+        setupInput();
+        delay(SETUP_STEP_DELAY);
+    }
 
-    delay(SETUP_STEP_DELAY);
-
-    setupLEDs();
+    if (ENABLE_LEDS)
+    {
+        setupLEDs();
+        delay(SETUP_STEP_DELAY);
+    }
 
     setupComplete = true;
 }
@@ -45,9 +54,12 @@ void loop()
         }
     }
 
-    loopInput();
-    loopLEDs();
-    loopSaveData();
+    if (ENABLE_INPUT)
+        loopInput();
+    if (ENABLE_LEDS)
+        loopLEDs();
+    if (ENABLE_SAVEDATA)
+        loopSaveData();
 
     // loop delay
     delay(1);
