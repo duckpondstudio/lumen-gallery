@@ -4,11 +4,9 @@
 #include <Arduino.h>
 #include <FastLED.h>
 
+#include "main.h"
 #include "pindef.h"
 #include "leds.h"
-
-#define DEBUG_ENABLED false // use debug systems / tools
-#define DEBUG_ONLY true     // in main.h, if DEBUG_ENABLED, exclude setup and loop for non-debug functions
 
 #define DEBUG_LED_CHIPSET WS2812B // chipset to use for debugging. Also see CHIPSET in leds.h
 #define DEBUG_LED_RGB_ORDER GRB   // RGB ordering to use for debugging. Also see RGB_ORDER in leds.h
