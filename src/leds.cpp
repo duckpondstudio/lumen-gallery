@@ -24,14 +24,16 @@ static bool debugLight = false;
 
 void setupLEDs()
 {
+
+    // prep LEDs 
     FastLED.setBrightness(MAIN_BRIGHTNESS);
     FastLED.addLeds<CHIPSET, PIN_LEDS, RGB_ORDER>(leds, LEDS_COUNT);
 
-    // load intial values
-    loadLEDData();
-
     // clear initial data buffer + LEDs
     clearLEDLocalData();
+
+    // load intial values
+    loadLEDData();
 
     // initial LED assignment
     updateLEDs(false);

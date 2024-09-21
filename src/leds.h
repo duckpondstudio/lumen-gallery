@@ -18,7 +18,7 @@
 #define S_DELTA_MULT 5
 #define V_DELTA_MULT 2
 
-#define MAIN_BRIGHTNESS 100 // base brightness to set FastLED to 
+#define MAIN_BRIGHTNESS 25 // base brightness to set FastLED to 
 
 #define MIN_BRIGHTNESS 5 // min value of V in LED HSV calc 
 #define MAX_BRIGHTNESS 150 // max value of V in LED HSV calc 
