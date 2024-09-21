@@ -41,7 +41,7 @@ void setup()
 
 void loop()
 {
-    if (!setupComplete)
+    if (!setupComplete || !ENABLE_LOOP)
         return;
 
     if (DEBUG_ENABLED)
