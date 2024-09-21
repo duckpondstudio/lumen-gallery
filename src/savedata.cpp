@@ -46,16 +46,15 @@ void loopSaveData()
     if (saveDelay > 0)
     {
         saveDelay--;
+        return;
     }
+
     // apply queued save state
     if (queuedSave)
     {
-        if (saveDelay <= 0)
-        {
-            commitSaveData();
-            queuedSave = false;
-            saveDelay = SAVE_INTERVAL;
-        }
+        commitSaveData();
+        queuedSave = false;
+        saveDelay = SAVE_INTERVAL;
     }
 }
 
