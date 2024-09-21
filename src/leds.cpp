@@ -18,6 +18,8 @@ static bool patternInverted = false;
 static bool lastToggledPattern = false;
 static bool lastPressedEnc = false;
 
+static bool ledsInitialized = false;
+
 static bool savedThisSession = false;
 
 static bool debugLight = false;
@@ -25,7 +27,7 @@ static bool debugLight = false;
 void setupLEDs()
 {
 
-    // prep LEDs 
+    // prep LEDs
     FastLED.setBrightness(MAIN_BRIGHTNESS);
     FastLED.addLeds<CHIPSET, PIN_LEDS, RGB_ORDER>(leds, LEDS_COUNT);
 
@@ -34,6 +36,9 @@ void setupLEDs()
 
     // load intial values
     loadLEDData();
+
+    // confirm LEDs initialized
+    ledsInitialized = true;
 
     // initial LED assignment
     updateLEDs(false);
@@ -97,6 +102,8 @@ void encoderPush()
 
 void updateLEDs(bool autoSave)
 {
+    if (!ledsInitialized)
+        return;
 
     // apply colors
     CRGB color1 = getColor1RGB();
@@ -255,11 +262,12 @@ void saveLEDData()
     }
 }
 
-void clearLEDLocalData() {
+void clearLEDLocalData()
+{
     // clear buffer + push to strip (fixes lingering bugs in data line)
     // per: https://www.reddit.com/r/FastLED/comments/dd950a/clear_turn_off_all_leds_before_void_loop_starts/
     // FastLED.clear(true);
-    // NOTE: FastLED.clear(true) seems to add add'l size to the build, causing it to fail. 
+    // NOTE: FastLED.clear(true) seems to add add'l size to the build, causing it to fail.
     //       Even tho the below is functionally identical, this does NOT break the build.
     for (int i = 0; i < LEDS_COUNT; i++)
     {
@@ -268,7 +276,6 @@ void clearLEDLocalData() {
     FastLED.show();
     FastLED.clearData();
 }
-
 
 void setCurrentColorH(byte value) { currentColor2 ? color2H = value : color1H = value; }
 void setCurrentColorS(byte value) { currentColor2 ? color2S = value : color1S = value; }
