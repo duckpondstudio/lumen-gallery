@@ -116,7 +116,8 @@ void updateLEDs(bool autoSave)
         leds[i] = patternInverted ? blend(color2, color1, blendAmt) : blend(color1, color2, blendAmt);
     }
 
-    if (debugLight) {
+    if (debugLight)
+    {
         leds[0] == CRGB(CHSV(0, 255, 172));
     }
 
@@ -218,7 +219,6 @@ void valueDelta(int delta)
     }
 }
 
-
 void loadLEDData()
 {
 
@@ -315,8 +315,10 @@ CRGB getColor2RGB()
     return CRGB(getColor2HSV());
 }
 
-void setDebugLight(bool enabled) {
-    if (enabled != debugLight) {
+void setDebugLight(bool enabled)
+{
+    if (enabled != debugLight)
+    {
         debugLight = enabled;
         updateLEDs(false);
     }

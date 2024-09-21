@@ -3,6 +3,8 @@
 
 #include <Arduino.h>
 #include <eewl.h>
+
+#include "main.h"
 #include "leds.h"
 #include "ledarrays.h"
 
