@@ -1,13 +1,13 @@
 #include "debug.h"
 
-CRGB debugLEDs[DEBUG_LEDS_TEST_COUNT];
+CRGB debugLEDs[DEBUG_D_LEDS_TEST_COUNT];
 
-CRGB debugLEDsA[DEBUG_LEDS_TEST_COUNT];
-CRGB debugLEDsB[DEBUG_LEDS_TEST_COUNT];
-CRGB debugLEDsC[DEBUG_LEDS_TEST_COUNT];
-CRGB debugLEDsD[DEBUG_LEDS_TEST_COUNT];
+CRGB debugLEDsA[DEBUG_D_LEDS_TEST_COUNT];
+CRGB debugLEDsB[DEBUG_D_LEDS_TEST_COUNT];
+CRGB debugLEDsC[DEBUG_D_LEDS_TEST_COUNT];
+CRGB debugLEDsD[DEBUG_D_LEDS_TEST_COUNT];
 
-CRGB debugAllLEDs0[DEBUG_LEDS_TEST_COUNT];
+CRGB debugAllLEDs0[DEBUG_D_LEDS_TEST_COUNT];
 
 int second = 0;          // one second timer used for blink
 int cycleDelay = 0;      // delay in ms for cycle logic flow
@@ -28,43 +28,43 @@ void setupDebug()
         return;
 
     // set brightness
-    if (DEBUG_LED_BRIGHTNESS >= 0 && DEBUG_LED_BRIGHTNESS < 256)
+    if (DEBUG_D_LED_BRIGHTNESS >= 0 && DEBUG_D_LED_BRIGHTNESS < 256)
     {
-        FastLED.setBrightness(DEBUG_LED_BRIGHTNESS);
+        FastLED.setBrightness(DEBUG_D_LED_BRIGHTNESS);
     }
 
     if (debugMultiPinsValid())
     {
         // setup multiple pins
-        switch (DEBUG_MULTI_PINS_SET)
+        switch (DEBUG_D_MULTI_PINS_SET)
         {
         case 1:
             // 0/1/2/3
-            FastLED.addLeds<DEBUG_LED_CHIPSET, 0, DEBUG_LED_RGB_ORDER>(debugLEDsA, DEBUG_LEDS_TEST_COUNT);
-            FastLED.addLeds<DEBUG_LED_CHIPSET, 1, DEBUG_LED_RGB_ORDER>(debugLEDsB, DEBUG_LEDS_TEST_COUNT);
-            FastLED.addLeds<DEBUG_LED_CHIPSET, 2, DEBUG_LED_RGB_ORDER>(debugLEDsC, DEBUG_LEDS_TEST_COUNT);
-            FastLED.addLeds<DEBUG_LED_CHIPSET, 3, DEBUG_LED_RGB_ORDER>(debugLEDsD, DEBUG_LEDS_TEST_COUNT);
+            FastLED.addLeds<DEBUG_D_LED_CHIPSET, 0, DEBUG_D_LED_RGB_ORDER>(debugLEDsA, DEBUG_D_LEDS_TEST_COUNT);
+            FastLED.addLeds<DEBUG_D_LED_CHIPSET, 1, DEBUG_D_LED_RGB_ORDER>(debugLEDsB, DEBUG_D_LEDS_TEST_COUNT);
+            FastLED.addLeds<DEBUG_D_LED_CHIPSET, 2, DEBUG_D_LED_RGB_ORDER>(debugLEDsC, DEBUG_D_LEDS_TEST_COUNT);
+            FastLED.addLeds<DEBUG_D_LED_CHIPSET, 3, DEBUG_D_LED_RGB_ORDER>(debugLEDsD, DEBUG_D_LEDS_TEST_COUNT);
             break;
         case 2:
             // 4/5/6/7
-            FastLED.addLeds<DEBUG_LED_CHIPSET, 4, DEBUG_LED_RGB_ORDER>(debugLEDsA, DEBUG_LEDS_TEST_COUNT);
-            FastLED.addLeds<DEBUG_LED_CHIPSET, 5, DEBUG_LED_RGB_ORDER>(debugLEDsB, DEBUG_LEDS_TEST_COUNT);
-            FastLED.addLeds<DEBUG_LED_CHIPSET, 6, DEBUG_LED_RGB_ORDER>(debugLEDsC, DEBUG_LEDS_TEST_COUNT);
-            FastLED.addLeds<DEBUG_LED_CHIPSET, 7, DEBUG_LED_RGB_ORDER>(debugLEDsD, DEBUG_LEDS_TEST_COUNT);
+            FastLED.addLeds<DEBUG_D_LED_CHIPSET, 4, DEBUG_D_LED_RGB_ORDER>(debugLEDsA, DEBUG_D_LEDS_TEST_COUNT);
+            FastLED.addLeds<DEBUG_D_LED_CHIPSET, 5, DEBUG_D_LED_RGB_ORDER>(debugLEDsB, DEBUG_D_LEDS_TEST_COUNT);
+            FastLED.addLeds<DEBUG_D_LED_CHIPSET, 6, DEBUG_D_LED_RGB_ORDER>(debugLEDsC, DEBUG_D_LEDS_TEST_COUNT);
+            FastLED.addLeds<DEBUG_D_LED_CHIPSET, 7, DEBUG_D_LED_RGB_ORDER>(debugLEDsD, DEBUG_D_LEDS_TEST_COUNT);
             break;
         case 3:
             // 8/9/10/0
-            FastLED.addLeds<DEBUG_LED_CHIPSET, 8, DEBUG_LED_RGB_ORDER>(debugLEDsA, DEBUG_LEDS_TEST_COUNT);
-            FastLED.addLeds<DEBUG_LED_CHIPSET, 9, DEBUG_LED_RGB_ORDER>(debugLEDsB, DEBUG_LEDS_TEST_COUNT);
-            FastLED.addLeds<DEBUG_LED_CHIPSET, 10, DEBUG_LED_RGB_ORDER>(debugLEDsC, DEBUG_LEDS_TEST_COUNT);
-            FastLED.addLeds<DEBUG_LED_CHIPSET, 0, DEBUG_LED_RGB_ORDER>(debugLEDsD, DEBUG_LEDS_TEST_COUNT);
+            FastLED.addLeds<DEBUG_D_LED_CHIPSET, 8, DEBUG_D_LED_RGB_ORDER>(debugLEDsA, DEBUG_D_LEDS_TEST_COUNT);
+            FastLED.addLeds<DEBUG_D_LED_CHIPSET, 9, DEBUG_D_LED_RGB_ORDER>(debugLEDsB, DEBUG_D_LEDS_TEST_COUNT);
+            FastLED.addLeds<DEBUG_D_LED_CHIPSET, 10, DEBUG_D_LED_RGB_ORDER>(debugLEDsC, DEBUG_D_LEDS_TEST_COUNT);
+            FastLED.addLeds<DEBUG_D_LED_CHIPSET, 0, DEBUG_D_LED_RGB_ORDER>(debugLEDsD, DEBUG_D_LEDS_TEST_COUNT);
             break;
         case 4:
             // 3/7/2/8
-            FastLED.addLeds<DEBUG_LED_CHIPSET, 3, DEBUG_LED_RGB_ORDER>(debugLEDsA, DEBUG_LEDS_TEST_COUNT);
-            FastLED.addLeds<DEBUG_LED_CHIPSET, 7, DEBUG_LED_RGB_ORDER>(debugLEDsB, DEBUG_LEDS_TEST_COUNT);
-            FastLED.addLeds<DEBUG_LED_CHIPSET, 2, DEBUG_LED_RGB_ORDER>(debugLEDsC, DEBUG_LEDS_TEST_COUNT);
-            FastLED.addLeds<DEBUG_LED_CHIPSET, 8, DEBUG_LED_RGB_ORDER>(debugLEDsD, DEBUG_LEDS_TEST_COUNT);
+            FastLED.addLeds<DEBUG_D_LED_CHIPSET, 3, DEBUG_D_LED_RGB_ORDER>(debugLEDsA, DEBUG_D_LEDS_TEST_COUNT);
+            FastLED.addLeds<DEBUG_D_LED_CHIPSET, 7, DEBUG_D_LED_RGB_ORDER>(debugLEDsB, DEBUG_D_LEDS_TEST_COUNT);
+            FastLED.addLeds<DEBUG_D_LED_CHIPSET, 2, DEBUG_D_LED_RGB_ORDER>(debugLEDsC, DEBUG_D_LEDS_TEST_COUNT);
+            FastLED.addLeds<DEBUG_D_LED_CHIPSET, 8, DEBUG_D_LED_RGB_ORDER>(debugLEDsD, DEBUG_D_LEDS_TEST_COUNT);
             break;
         }
 
@@ -72,9 +72,9 @@ void setupDebug()
         FastLED.clearData();
         FastLED.show();
 
-        if (!DEBUG_MULTI_BLINK_CYCLE)
+        if (!DEBUG_D_MULTI_BLINK_CYCLE)
         {
-            for (int i = 0; i < DEBUG_LEDS_TEST_COUNT; i++)
+            for (int i = 0; i < DEBUG_D_LEDS_TEST_COUNT; i++)
             {
                 debugLEDsA[i] = CRGB::Red;
                 debugLEDsB[i] = CRGB::Green;
@@ -86,19 +86,19 @@ void setupDebug()
     }
 
     // may interfere with multipins valid test
-    if (DEBUG_BASIC_LED || DEBUG_BLINK_LED || DEBUG_LEDS_RAINBOW)
+    if (DEBUG_D_BASIC_LED || DEBUG_D_BLINK_LED || DEBUG_D_LEDS_RAINBOW)
     {
         // debug a single LED for display or blinking
-        FastLED.addLeds<DEBUG_LED_CHIPSET, DEBUG_LED_DATA_PIN, DEBUG_LED_RGB_ORDER>(debugLEDs, DEBUG_LEDS_TEST_COUNT);
+        FastLED.addLeds<DEBUG_D_LED_CHIPSET, DEBUG_D_LED_DATA_PIN, DEBUG_D_LED_RGB_ORDER>(debugLEDs, DEBUG_D_LEDS_TEST_COUNT);
 
-        if (DEBUG_BLINK_LED)
+        if (DEBUG_D_BLINK_LED)
             blinkOn = true;
 
-        for (int i = 0; i < DEBUG_LEDS_TEST_COUNT; i++)
+        for (int i = 0; i < DEBUG_D_LEDS_TEST_COUNT; i++)
         {
-            if (DEBUG_LEDS_RAINBOW && DEBUG_LEDS_TEST_COUNT > 1)
+            if (DEBUG_D_LEDS_RAINBOW && DEBUG_D_LEDS_TEST_COUNT > 1)
             {
-                debugLEDs[i] = getRainbowColor(i, DEBUG_LEDS_TEST_COUNT);
+                debugLEDs[i] = getRainbowColor(i, DEBUG_D_LEDS_TEST_COUNT);
             }
             else
             {
@@ -112,9 +112,9 @@ void setupDebug()
         FastLED.show();
     }
 
-    if (DEBUG_HILOW_OUT)
+    if (DEBUG_D_HILOW_OUT)
     {
-        pinMode(DEBUG_HILOW_PIN, OUTPUT);
+        pinMode(DEBUG_D_HILOW_PIN, OUTPUT);
     }
 }
 
@@ -123,13 +123,13 @@ void loopDebug()
     if (!DEBUG_ENABLED)
         return;
 
-    if (DEBUG_MULTI_BLINK_CYCLE && debugMultiPinsValid())
+    if (DEBUG_D_MULTI_BLINK_CYCLE && debugMultiPinsValid())
     {
         cycleBlinkLEDs();
     }
 
     bool oneSecondTick = false; // track the 1s timer
-    if (DEBUG_BLINK_LED || DEBUG_HILOW_OUT)
+    if (DEBUG_D_BLINK_LED || DEBUG_D_HILOW_OUT)
     {
 
         second++;
@@ -140,18 +140,18 @@ void loopDebug()
         }
         if (oneSecondTick)
         {
-            if (DEBUG_HILOW_OUT)
+            if (DEBUG_D_HILOW_OUT)
             {
                 hiLow = !hiLow;
-                digitalWrite(DEBUG_HILOW_PIN, hiLow ? HIGH : LOW);
+                digitalWrite(DEBUG_D_HILOW_PIN, hiLow ? HIGH : LOW);
             }
 
-            if (DEBUG_BLINK_LED)
+            if (DEBUG_D_BLINK_LED)
             {
                 blinkOn = !blinkOn;
                 // if cycling rainbow LEDs, that code will actually turn the LEDs on / off
-                if (!(DEBUG_LEDS_RAINBOW && DEBUG_RAINBOW_CYCLE))
-                    for (int i = 0; i < DEBUG_LEDS_TEST_COUNT; i++)
+                if (!(DEBUG_D_LEDS_RAINBOW && DEBUG_D_RAINBOW_CYCLE))
+                    for (int i = 0; i < DEBUG_D_LEDS_TEST_COUNT; i++)
                     {
                         {
                             debugLEDs[0] = blinkOn ? CRGB::Cyan : CRGB::Black;
@@ -167,7 +167,7 @@ void loopDebug()
         }
     }
 
-    if (DEBUG_LEDS_RAINBOW && DEBUG_RAINBOW_CYCLE)
+    if (DEBUG_D_LEDS_RAINBOW && DEBUG_D_RAINBOW_CYCLE)
     {
         rainbowTimer++;
         bool incrementingRainbowTimer = rainbowTimer >= rainbowInterval;
@@ -183,18 +183,18 @@ void loopDebug()
                 }
                 rainbowTimer = 0;
             }
-            for (int i = 0; i < DEBUG_LEDS_TEST_COUNT; i++)
+            for (int i = 0; i < DEBUG_D_LEDS_TEST_COUNT; i++)
             {
-                if (DEBUG_BLINK_LED)
+                if (DEBUG_D_BLINK_LED)
                 {
                     if (blinkOn)
-                        debugLEDs[i] = getRainbowColor(i, DEBUG_LEDS_TEST_COUNT, rainbowOffset);
+                        debugLEDs[i] = getRainbowColor(i, DEBUG_D_LEDS_TEST_COUNT, rainbowOffset);
                     else
                         debugLEDs[i] = CRGB::Black;
                 }
                 else
                 {
-                    debugLEDs[i] = getRainbowColor(i, DEBUG_LEDS_TEST_COUNT, rainbowOffset);
+                    debugLEDs[i] = getRainbowColor(i, DEBUG_D_LEDS_TEST_COUNT, rainbowOffset);
                 }
             }
             FastLED.show();
@@ -222,7 +222,7 @@ void cycleBlinkLEDs()
         break;
     case 2:
         // turn on for one second
-        for (int i = 0; i < DEBUG_LEDS_TEST_COUNT; i++)
+        for (int i = 0; i < DEBUG_D_LEDS_TEST_COUNT; i++)
         {
             getBlinkCycleLEDs()[i] = color;
         }
@@ -233,7 +233,7 @@ void cycleBlinkLEDs()
         break;
     case 3:
         // blink off
-        for (int i = 0; i < DEBUG_LEDS_TEST_COUNT; i++)
+        for (int i = 0; i < DEBUG_D_LEDS_TEST_COUNT; i++)
         {
             getBlinkCycleLEDs()[i] = CRGB::Black;
         }
@@ -243,7 +243,7 @@ void cycleBlinkLEDs()
         break;
     case 4:
         // blink on
-        for (int i = 0; i < DEBUG_LEDS_TEST_COUNT; i++)
+        for (int i = 0; i < DEBUG_D_LEDS_TEST_COUNT; i++)
         {
             getBlinkCycleLEDs()[i] = color;
         }
@@ -257,7 +257,7 @@ void cycleBlinkLEDs()
         else
         {
             // iterations complete, blink off move to next pin
-            for (int i = 0; i < DEBUG_LEDS_TEST_COUNT; i++)
+            for (int i = 0; i < DEBUG_D_LEDS_TEST_COUNT; i++)
             {
                 getBlinkCycleLEDs()[i] = CRGB::Black;
             }
@@ -296,7 +296,7 @@ CHSV getRainbowColor(int current, int max, int offset = 0)
 
 void clearLEDs()
 {
-    for (int i = 0; i < DEBUG_LEDS_TEST_COUNT; i++)
+    for (int i = 0; i < DEBUG_D_LEDS_TEST_COUNT; i++)
     {
         debugLEDs[i] = CRGB::Black;
         debugLEDsA[i] = CRGB::Black;
@@ -309,5 +309,5 @@ void clearLEDs()
 
 bool debugMultiPinsValid()
 {
-    return DEBUG_MULTI_PINS_SET > 0 && DEBUG_MULTI_PINS_SET <= 4;
+    return DEBUG_D_MULTI_PINS_SET > 0 && DEBUG_D_MULTI_PINS_SET <= 4;
 }

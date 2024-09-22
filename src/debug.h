@@ -1,4 +1,7 @@
 #ifndef DEBUG_H
+
+// Note: Defs beginning with DEBUG_D_ are used internally in the debugging system, specifically debug.h and debug.cpp.
+//       Defs that are simply DEBUG_ and then the description of the definition, are used throughout the codebase.
 #define DEBUG_H
 
 #include <Arduino.h>
@@ -8,8 +11,8 @@
 #include "pindef.h"
 #include "leds.h"
 
-#define DEBUG_LED_CHIPSET WS2812B // chipset to use for debugging. Also see CHIPSET in leds.h
-#define DEBUG_LED_RGB_ORDER GRB   // RGB ordering to use for debugging. Also see RGB_ORDER in leds.h
+#define DEBUG_D_LED_CHIPSET WS2812B // chipset to use for debugging. Also see CHIPSET in leds.h
+#define DEBUG_D_LED_RGB_ORDER GRB   // RGB ordering to use for debugging. Also see RGB_ORDER in leds.h
 
 // for debugging multiple LED pins with diff colours.
 // 1 = pins0/1/2/3,
@@ -17,20 +20,20 @@
 // 3 = 8/9/10/0,
 // 4 = 3/7/2/8,
 // 0/else = none
-#define DEBUG_MULTI_PINS_SET 0
-#define DEBUG_MULTI_BLINK_CYCLE false // cycle thru DEBUG_MULTI_PINS_SET with numbered blinks
+#define DEBUG_D_MULTI_PINS_SET 0
+#define DEBUG_D_MULTI_BLINK_CYCLE false // cycle thru DEBUG_MULTI_PINS_SET with numbered blinks
 
-#define DEBUG_BASIC_LED true     // display a single LED
-#define DEBUG_BLINK_LED false    // blink a single LED
-#define DEBUG_LED_DATA_PIN 7     // data pin to use for a single LED
-#define DEBUG_LEDS_TEST_COUNT 38 // how many LEDs on the strip to test (default 1)
-#define DEBUG_LEDS_RAINBOW true  // if true, assigns all LEDs on the strip through HSV 0-255
-#define DEBUG_RAINBOW_CYCLE true // if true, and if debugging rainbow, makes the rainbow animate
+#define DEBUG_D_BASIC_LED true     // display a single LED
+#define DEBUG_D_BLINK_LED false    // blink a single LED
+#define DEBUG_D_LED_DATA_PIN 7     // data pin to use for a single LED
+#define DEBUG_D_LEDS_TEST_COUNT 38 // how many LEDs on the strip to test (default 1)
+#define DEBUG_D_LEDS_RAINBOW true  // if true, assigns all LEDs on the strip through HSV 0-255
+#define DEBUG_D_RAINBOW_CYCLE true // if true, and if debugging rainbow, makes the rainbow animate
 
-#define DEBUG_LED_BRIGHTNESS 25 // if >= 0 && < 256, sets debug LED brightness to this value on setup
+#define DEBUG_D_LED_BRIGHTNESS 25 // if >= 0 && < 256, sets debug LED brightness to this value on setup
 
-#define DEBUG_HILOW_OUT true
-#define DEBUG_HILOW_PIN 5
+#define DEBUG_D_HILOW_OUT false // basic debug tool that toggles the hilow pin HIGH/LOW on 1s intervals, for LED and IO debugging
+#define DEBUG_D_HILOW_PIN 5     // pin to toggle if DEBUG_D_HILOW_OUT is true
 
 void setupDebug();
 void loopDebug();
