@@ -31,7 +31,6 @@ void setupSaveData()
     if (eewlData.get(data))
     {
         // data found
-        // setDebugLight(true);
     }
     else
     {

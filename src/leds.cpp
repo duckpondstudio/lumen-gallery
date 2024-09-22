@@ -278,7 +278,6 @@ void saveLEDData()
     if (!savedThisSession)
     {
         savedThisSession = true;
-        // debugLight = true;
         updateLEDs(false);
     }
 }
