@@ -47,25 +47,28 @@ void setupLEDs()
 
 void loopLEDs()
 {
-    if (isPressedSat())
+    if (DEBUG_EXTERNAL_ENABLED && DEBUG_LED_DEBUGLIGHT_ENABLED && DEBUG_LED_DEBUGLIGHT_BTN_TOGGLE)
     {
-        setDebugLight(true);
-    }
-    if (isPressedVal())
-    {
-        setDebugLight(false);
-    }
-    if (isPressedEnc())
-    {
-        if (!debugLightToggle)
+        if (isPressedSat())
         {
-            setDebugLight(!getDebugLight());
-            debugLightToggle = true;
+            setDebugLight(true);
         }
-    }
-    else
-    {
-        debugLightToggle = false;
+        if (isPressedVal())
+        {
+            setDebugLight(false);
+        }
+        if (isPressedEnc())
+        {
+            if (!debugLightToggle)
+            {
+                setDebugLight(!getDebugLight());
+                debugLightToggle = true;
+            }
+        }
+        else
+        {
+            debugLightToggle = false;
+        }
     }
 
     // determine toggle pattern state
@@ -137,9 +140,12 @@ void updateLEDs(bool autoSave)
         leds[i] = patternInverted ? blend(color2, color1, blendAmt) : blend(color1, color2, blendAmt);
     }
 
-    if (debugLight)
+    if (DEBUG_EXTERNAL_ENABLED && DEBUG_LED_DEBUGLIGHT_ENABLED)
     {
-        leds[0] == CRGB(255,255,0);
+        if (debugLight)
+        {
+            leds[0] == CRGB(255, 255, 0);
+        }
     }
 
     FastLED.show();
@@ -337,6 +343,11 @@ CRGB getColor2RGB()
 
 void setDebugLight(bool enabled)
 {
+    if (!DEBUG_EXTERNAL_ENABLED || !DEBUG_LED_DEBUGLIGHT_ENABLED)
+    {
+        // debugging disabled
+        return;
+    }
     if (enabled != debugLight)
     {
         debugLight = enabled;
@@ -345,5 +356,10 @@ void setDebugLight(bool enabled)
 }
 bool getDebugLight()
 {
+    if (!DEBUG_EXTERNAL_ENABLED || !DEBUG_LED_DEBUGLIGHT_ENABLED)
+    {
+        // debugging disabled
+        return false;
+    }
     return debugLight;
 }

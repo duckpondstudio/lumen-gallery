@@ -24,7 +24,7 @@ bool hiLow = false;   // is hilow output high (t) or low (f)
 
 void setupDebug()
 {
-    if (!DEBUG_ENABLED)
+    if (!DEBUG_INTERNAL_ENABLED)
         return;
 
     // set brightness
@@ -120,7 +120,7 @@ void setupDebug()
 
 void loopDebug()
 {
-    if (!DEBUG_ENABLED)
+    if (!DEBUG_INTERNAL_ENABLED)
         return;
 
     if (DEBUG_D_MULTI_BLINK_CYCLE && debugMultiPinsValid())

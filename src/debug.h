@@ -11,6 +11,15 @@
 #include "pindef.h"
 #include "leds.h"
 
+// -------------------------------------------------
+// ---------------                   ---------------
+// --------------- DEBUG DEFINITIONS ---------------
+// ---------------                   ---------------
+// -------------------------------------------------
+// 
+// ------- INTERNAL DEBUG SYSTEM DEFINITIONS ------- 
+// -------  that begin with DEBUG_D_[name]   ------- 
+
 #define DEBUG_D_LED_CHIPSET WS2812B // chipset to use for debugging. Also see CHIPSET in leds.h
 #define DEBUG_D_LED_RGB_ORDER GRB   // RGB ordering to use for debugging. Also see RGB_ORDER in leds.h
 
@@ -34,6 +43,18 @@
 
 #define DEBUG_D_HILOW_OUT false // basic debug tool that toggles the hilow pin HIGH/LOW on 1s intervals, for LED and IO debugging
 #define DEBUG_D_HILOW_PIN 5     // pin to toggle if DEBUG_D_HILOW_OUT is true
+
+// 
+// ------- EXTERNAL DEBUG SYSTEM DEFINITIONS ------- 
+// -------  beginning just with DEBUG_[name] ------- 
+// 
+
+#define DEBUG_LED_DEBUGLIGHT_ENABLED true // allow use of the DebugLight in leds.cpp (toggleable first LED in the strip)
+#define DEBUG_LED_DEBUGLIGHT_BTN_TOGGLE true // ifi DebugLight is enabled, allows toggling via Sat/Val/Enc buttons 
+
+// 
+// ------- METHOD AND PROPERTY DECLARATION ------- 
+// 
 
 void setupDebug();
 void loopDebug();

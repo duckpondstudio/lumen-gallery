@@ -18,8 +18,10 @@
 #define ENABLE_LEDS true      // Use LEDs? LEDs should be setup last and looped second
 #define ENABLE_INPUT true     // Use Input? Input should be setup second and looped first
 
-#define DEBUG_ENABLED false // use debug systems / tools
-#define DEBUG_ONLY true     // if DEBUG_ENABLED, exclude setup and loop for non-debug functions
+#define DEBUG_INTERNAL_ENABLED true // allow use of debug tools/systems found in debug.h/debug.cpp (internal)
+#define DEBUG_INTERNAL_ONLY false   // if DEBUG_INTERNAL_ENABLED, exclude setup and loop for all non-debug functions
+
+#define DEBUG_EXTERNAL_ENABLED false // allow use of debug tools found outside debug.h/debug.cpp, throughout the codebase (external)
 
 void setup();
 void loop();

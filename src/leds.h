@@ -4,6 +4,7 @@
 #include <Arduino.h>
 #include <FastLED.h>
 
+#include "debug.h"
 #include "pindef.h"
 #include "ledarrays.h"
 #include "input.h"

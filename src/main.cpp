@@ -6,10 +6,10 @@ void setup()
 {
     delay(INITIAL_DELAY);
 
-    if (DEBUG_ENABLED)
+    if (DEBUG_INTERNAL_ENABLED)
     {
         setupDebug();
-        if (DEBUG_ONLY)
+        if (DEBUG_INTERNAL_ONLY)
         {
             setupComplete = true;
             return;
@@ -44,10 +44,10 @@ void loop()
     if (!setupComplete || !ENABLE_LOOP)
         return;
 
-    if (DEBUG_ENABLED)
+    if (DEBUG_INTERNAL_ENABLED)
     {
         loopDebug();
-        if (DEBUG_ONLY)
+        if (DEBUG_INTERNAL_ONLY)
         {
             delay(1);
             return;
@@ -59,7 +59,7 @@ void loop()
 
     if (ENABLE_LEDS)
         loopLEDs();
-        
+
     if (ENABLE_SAVEDATA)
         loopSaveData();
 
