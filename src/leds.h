@@ -51,6 +51,9 @@ CRGB getColor1RGB();
 CHSV getColor2HSV();
 CRGB getColor2RGB();
 
+// inline assignment for a debug light (first LED in the strip turns on to assigned debug colour)
 void setDebugLight(bool enabled);
+// convenience getter for current state of the debug light 
+bool getDebugLight();
 
 #endif

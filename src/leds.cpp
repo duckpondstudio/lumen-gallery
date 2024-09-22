@@ -23,6 +23,7 @@ static bool ledsInitialized = false;
 static bool savedThisSession = false;
 
 static bool debugLight = false;
+static bool debugLightToggle = false;
 
 void setupLEDs()
 {
@@ -46,6 +47,26 @@ void setupLEDs()
 
 void loopLEDs()
 {
+    if (isPressedSat())
+    {
+        setDebugLight(true);
+    }
+    if (isPressedVal())
+    {
+        setDebugLight(false);
+    }
+    if (isPressedEnc())
+    {
+        if (!debugLightToggle)
+        {
+            setDebugLight(!getDebugLight());
+            debugLightToggle = true;
+        }
+    }
+    else
+    {
+        debugLightToggle = false;
+    }
 
     // determine toggle pattern state
     if (lastToggledPattern)
@@ -118,7 +139,7 @@ void updateLEDs(bool autoSave)
 
     if (debugLight)
     {
-        leds[0] == CRGB(CHSV(0, 255, 172));
+        leds[0] == CRGB(255,255,0);
     }
 
     FastLED.show();
@@ -322,4 +343,8 @@ void setDebugLight(bool enabled)
         debugLight = enabled;
         updateLEDs(false);
     }
+}
+bool getDebugLight()
+{
+    return debugLight;
 }

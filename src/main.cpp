@@ -56,8 +56,10 @@ void loop()
 
     if (ENABLE_INPUT)
         loopInput();
+
     if (ENABLE_LEDS)
         loopLEDs();
+        
     if (ENABLE_SAVEDATA)
         loopSaveData();
 
