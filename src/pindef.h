@@ -14,4 +14,8 @@
 #define PIN_BTN_VAL 6 // Button (LED colour, Value control)
 #define PIN_BTN_ENC 5 // Button (Rotary Encoder)
 
+#define PIN_DEBUG_0 0 // debug pin 0 
+#define PIN_DEBUG_1 1 // debug pin 1 
+#define PIN_DEBUG_2 2 // debug pin 2 
+
 #endif
