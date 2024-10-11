@@ -16,9 +16,9 @@
 // --------------- DEBUG DEFINITIONS ---------------
 // ---------------                   ---------------
 // -------------------------------------------------
-// 
-// ------- INTERNAL DEBUG SYSTEM DEFINITIONS ------- 
-// -------  that begin with DEBUG_D_[name]   ------- 
+//
+// ------- INTERNAL DEBUG SYSTEM DEFINITIONS -------
+// -------  that begin with DEBUG_D_[name]   -------
 
 #define DEBUG_D_LED_CHIPSET WS2812B // chipset to use for debugging. Also see CHIPSET in leds.h
 #define DEBUG_D_LED_RGB_ORDER GRB   // RGB ordering to use for debugging. Also see RGB_ORDER in leds.h
@@ -39,22 +39,25 @@
 #define DEBUG_D_LEDS_RAINBOW true  // if true, assigns all LEDs on the strip through HSV 0-255
 #define DEBUG_D_RAINBOW_CYCLE true // if true, and if debugging rainbow, makes the rainbow animate
 
-#define DEBUG_D_LED_BRIGHTNESS 25 // if >= 0 && < 256, sets debug LED brightness to this value on setup
+#define DEBUG_D_FLED_BRIGHTNESS 25      // if >= 0 && < 256, sets debug LED brightness to this value on setup
+#define DEBUG_D_FLED_SET_MAX_POWER true // if true, limit FastLED to drawing the max specified voltage/current
+#define DEBUG_D_FLED_MAX_VOLTAGE 5      // max voltage FastLED will draw, in V
+#define DEBUG_D_FLED_MAX_CURRENT 1000   // max current FastLED will draw, in mA
 
 #define DEBUG_D_HILOW_OUT false // basic debug tool that toggles the hilow pin HIGH/LOW on 1s intervals, for LED and IO debugging
 #define DEBUG_D_HILOW_PIN 5     // pin to toggle if DEBUG_D_HILOW_OUT is true
 
-// 
-// ------- EXTERNAL DEBUG SYSTEM DEFINITIONS ------- 
-// -------  beginning just with DEBUG_[name] ------- 
-// 
+//
+// ------- EXTERNAL DEBUG SYSTEM DEFINITIONS -------
+// -------  beginning just with DEBUG_[name] -------
+//
 
-#define DEBUG_LED_DEBUGLIGHT_ENABLED true // allow use of the DebugLight in leds.cpp (toggleable first LED in the strip)
-#define DEBUG_LED_DEBUGLIGHT_BTN_TOGGLE true // ifi DebugLight is enabled, allows toggling via Sat/Val/Enc buttons 
+#define DEBUG_LED_DEBUGLIGHT_ENABLED true    // allow use of the DebugLight in leds.cpp (toggleable first LED in the strip)
+#define DEBUG_LED_DEBUGLIGHT_BTN_TOGGLE true // ifi DebugLight is enabled, allows toggling via Sat/Val/Enc buttons
 
-// 
-// ------- METHOD AND PROPERTY DECLARATION ------- 
-// 
+//
+// ------- METHOD AND PROPERTY DECLARATION -------
+//
 
 void setupDebug();
 void loopDebug();

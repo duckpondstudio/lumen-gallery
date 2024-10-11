@@ -28,9 +28,13 @@ void setupDebug()
         return;
 
     // set brightness
-    if (DEBUG_D_LED_BRIGHTNESS >= 0 && DEBUG_D_LED_BRIGHTNESS < 256)
+    if (DEBUG_D_FLED_BRIGHTNESS >= 0 && DEBUG_D_FLED_BRIGHTNESS < 256)
     {
-        FastLED.setBrightness(DEBUG_D_LED_BRIGHTNESS);
+        FastLED.setBrightness(DEBUG_D_FLED_BRIGHTNESS);
+    }
+
+    if (DEBUG_D_FLED_SET_MAX_POWER) {
+        FastLED.setMaxPowerInVoltsAndMilliamps(DEBUG_D_FLED_MAX_VOLTAGE, DEBUG_D_FLED_MAX_CURRENT);
     }
 
     if (debugMultiPinsValid())

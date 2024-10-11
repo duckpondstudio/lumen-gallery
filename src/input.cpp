@@ -42,21 +42,24 @@ void loopInput()
     updateEncoder();
     updateButtons();
 
-    // check for rotation 
+    // check for rotation
     int newPos = encoder->getPosition();
     if (newPos != encoderPosition)
     {
         int encoderDelta = newPos - encoderPosition;
-        // update new position 
+        // update new position
         encoderPosition = newPos;
-        // pass delta to LEDs
-        valueDelta(encoderDelta);
+        // pass delta to LEDs, if enabled
+        if (ENABLE_LEDS)
+        {
+            valueDelta(encoderDelta);
+        }
     }
 }
 
 void updateEncoder()
 {
-    // update encoder 
+    // update encoder
     encoder->tick();
 }
 

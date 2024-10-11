@@ -6,6 +6,7 @@
 #include <Arduino.h>
 #include <RotaryEncoder.h>
 
+#include "main.h"
 #include "pindef.h"
 #include "button.h"
 #include "leds.h"
